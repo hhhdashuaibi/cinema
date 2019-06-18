@@ -46,7 +46,6 @@
         update ticket set price=#{price} where id=#{ticketId}
     </update>
 
-
     <delete id="deleteTicket">
         update ticket set state="2" where id=#{ticketId}
     </delete>

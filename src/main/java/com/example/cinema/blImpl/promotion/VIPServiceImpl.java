@@ -29,7 +29,6 @@ public class VIPServiceImpl implements VIPService {
     ScheduleMapper scheduleMapper;
 
     @Override
-
     public ResponseVO addVIPCard(VIPCardForm vipCardForm) {
         VIPCard vipCard = new VIPCard();
         vipCard.setUserId(vipCardForm.getUserId());

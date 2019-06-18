@@ -25,9 +25,6 @@ public interface VIPService {
 
     ResponseVO refundCard(VIPRefundForm vipRefundForm);
 
-
     ResponseVO updateVIPCard(String kind, double targetAmount, double discountAmount, double discountPercent);
-
-
 
 }

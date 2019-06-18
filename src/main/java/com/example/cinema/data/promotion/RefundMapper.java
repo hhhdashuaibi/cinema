@@ -13,6 +13,7 @@ public interface RefundMapper {
     int changeRefund(Refund refund);
     int changeRefundAndMovie(@Param("refundId") int refundId, @Param("movieId")List<Integer> movieId);
     int deleteRefundAndMovie(@Param("refundId")int refundId);
+
     List<Refund> SelectRefunds();
     List<Refund> SelectRefundsByMovie(int movieId);
 

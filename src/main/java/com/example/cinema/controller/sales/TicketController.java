@@ -38,14 +38,10 @@ public class TicketController {
         return ticketService.getTicketByUser(userId);
     }
 
-
-
-
     @GetMapping("/get/show/{userId}")
     public ResponseVO getTicketRefundByUserId(@PathVariable int userId){
         return ticketService.getRefundTicketByUser(userId);
     }
-
 
     @GetMapping("/get/occupiedSeats")
     public ResponseVO getOccupiedSeats(@RequestParam int scheduleId){

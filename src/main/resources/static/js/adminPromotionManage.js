@@ -96,7 +96,6 @@ $(document).ready(function() {
                endTime: $("#activity-end-date-input").val()
            }
        };
-
         postRequest(
             '/activity/publish',
             form,
@@ -104,6 +103,24 @@ $(document).ready(function() {
                 if(res.success){
                     getActivities();
                     $("#activityModal").modal('hide');
+                    getRequest(
+                        '/activity/getCouponId',
+                        function(res){
+                            postRequest(
+                                '/coupon/addUsers?couponId='+res.content+'&targetPurchase='+$("#coupon-least-purchase-input").val(),
+                                null,
+                                function (){
+                                    alert("用户得到优惠券");
+                                },
+                                function (error) {
+                                    alert(error);
+                                }
+                            );
+                        },
+                        function (error) {
+                            alert(error)
+                        }
+                    )
                 } else {
                     alert(res.message);
                 }

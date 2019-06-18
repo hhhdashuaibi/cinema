@@ -345,6 +345,7 @@ public class TicketServiceImpl implements TicketService {
     public ResponseVO deleteTicket(int id){
         //删除票信息
         try {
+            System.out.println(id);
             ticketMapper.deleteTicket(id);
             return ResponseVO.buildSuccess();
         }catch (Exception e){

@@ -9,6 +9,9 @@ import com.example.cinema.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author huwen
  * @date 2019/3/23
@@ -49,10 +52,37 @@ public class AccountServiceImpl implements AccountService {
         }
         return ResponseVO.buildSuccess();
     }
+
     @Override
     public ResponseVO getStaff() {
         return ResponseVO.buildSuccess(accountMapper.getStaff(1).stream().map(User::getVO));
     }
 
+    @Override
+    public ResponseVO getQualifiedUsers(double targetPurchase){
+        try {
+            List<User> users =accountMapper.getUsersByPurchase(targetPurchase);
+            List<UserVO> userVOS=new ArrayList<>();
+            for(int i=0;i<users.size();i++){
+                userVOS.add(users.get(i).getVO());
+            }
+            if(userVOS != null){
+                return ResponseVO.buildSuccess(userVOS);
+            }else{
+                return ResponseVO.buildSuccess(null);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO updateTotalPurchase(double purchaseAmount,int userId){
+        double rawTotal=accountMapper.getTotalPurchase(userId).getTotalPurchase();
+        double res=rawTotal+purchaseAmount;
+        accountMapper.updateTotalPurchase(res,userId);
+        return ResponseVO.buildSuccess();
+    }
 
 }

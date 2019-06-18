@@ -2,29 +2,41 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cinema.data.user.AccountMapper">
     <insert id="createNewAccount" useGeneratedKeys="true" keyProperty="id">
-
-        insert into user(username,password,power)
-        values(#{username},#{password},#{power})
-
+        insert into user(username,password,power,total_purchase)
+        values(#{username},#{password},#{power},#{totalPurchase})
     </insert>
+
     <select id="getAccountByName" resultMap="User">
         select * from user where username=#{username}
+    </select>
+
+    <select id="getUsersByPurchase" resultMap="User">
+        select * from user where total_purchase>=#{targetPurchase}
     </select>
 
     <select id="getStaff" resultMap="User">
         select * from user where power=#{power}
     </select>
+
     <resultMap id="User" type="com.example.cinema.po.User">
         <result column="id" property="id"></result>
         <result column="username" property="username"></result>
         <result column="password" property="password"></result>
         <result column="name" property="name"></result>
         <result column="power" property="power"></result>
-
+        <result column="total_purchase" property="totalPurchase"></result>
     </resultMap>
+
     <update id="updatePowerAndName">
         update user set power=#{power} ,name=#{name} where username=#{username}
     </update>
 
+    <select id="getTotalPurchase" resultMap="User">
+        select * from user where id=#{userId}
+    </select>
+
+    <update id="updateTotalPurchase">
+        update user set total_purchase=#{newTotalPurchase} where id=#{userId}
+    </update>
 
 </mapper>

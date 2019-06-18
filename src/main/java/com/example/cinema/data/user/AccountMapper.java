@@ -32,10 +32,14 @@ public interface AccountMapper {
      */
     public User getAccountByName(@Param("username") String username);
 
-
     public void updatePowerAndName(@Param("power") int power,@Param("name") String name,@Param("username") String username);
 
     public List<User> getStaff(@Param("power") int power);
 
+    public List<User> getUsersByPurchase(@Param("targetPurchase") double targetPurchase);
+
+    public void updateTotalPurchase(@Param("newTotalPurchase") double newtotalPurchase,@Param("userId") int userId);
+
+    public User getTotalPurchase(@Param("userId") int userId);
 
 }

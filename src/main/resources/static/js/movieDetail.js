@@ -93,8 +93,6 @@ $(document).ready(function(){
         $('#movie-startDate').text(new Date(movie.startDate).toLocaleDateString());
         $('#movie-type').text(movie.type);
         $('#movie-country').text(movie.country);
-
-
         $('#movie-language').text(movie.language);
         $('#movie-director').text(movie.director);
         $('#movie-starring').text(movie.starring);

@@ -31,6 +31,7 @@ public class RefundServicelmpl implements RefundService {
             refund.setTimeLimit(refundForm.getTimeLimit());
             refundMapper.insertRefund(refund);
             if(refundForm.getMovieList().size()!=0&&refundForm.getMovieList()!=null){
+                System.out.println(refundForm.getMovieList());
                 refundMapper.insertRefundAndMovie(refund.getId(),refundForm.getMovieList());
             }
             return ResponseVO.buildSuccess(refundMapper.SelectByID(refund.getId()));

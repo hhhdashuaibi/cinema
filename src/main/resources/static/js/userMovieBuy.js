@@ -286,9 +286,7 @@ function postPayRequest() {
             '/ticket/vip/buy?ticketId=' + order.ticketId + '&couponId=' + order.couponId,
             null,
             function (res) {
-
                 //alert("购票成功");
-
             },
             function (error) {
                 alert("购票失败");
@@ -305,15 +303,22 @@ function postPayRequest() {
                 alert("购票失败");
             }
         )
-
+        postRequest(
+            '/updateTotalPurchase?purchaseAmount='+$("#order-actual-total").text().substring(2)+'&userId='+sessionStorage.getItem("id"),
+            null,
+            function (res) {
+                //alert("购票成功");
+            },
+            function (error) {
+                alert("购票失败");
+            }
+        )
         }else{
         postRequest(
             '/ticket/buy?ticketId=' + order.ticketId + '&couponId=' + order.couponId,
             null,
             function (res) {
-
                 //alert("购票成功");
-
             },
             function (error) {
                 alert("购票失败");

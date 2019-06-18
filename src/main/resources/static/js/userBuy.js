@@ -78,7 +78,6 @@ $(document).ready(function () {
 
 
     function updateVIPcard() {
-
         getRequest(
             '/vip/'+ sessionStorage.getItem('id') + '/get',
             function (res) {
@@ -110,10 +109,8 @@ $(document).ready(function () {
             },function (err) {
                 console.log(JSON.stringify(err));
             })
-
-
-
     }
+
 
     function deleteTicket(ticket) {
         postRequest(
