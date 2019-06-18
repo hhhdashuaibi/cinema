@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.statistics.StatisticsMapper">
+    <select id="selectMovieScheduleTimes" resultType="com.example.cinema.po.MovieScheduleTime">
+        select movie_id as movieId, count(*) as time,name from
+              (select * from schedule where start_time between #{date} and #{nextDate}) s,
+              movie where s.movie_id = movie.id group by movieId
+    </select>
+
+    <select id="selectMovieTotalBoxOffice" resultType="com.example.cinema.po.MovieTotalBoxOffice">
+        select movie.id as movieId, boxOffice,name from movie
+        left join
+          (select movie_id as movieId,sum(fare) as boxOffice from schedule
+          right join
+          (select schedule_id from ticket where state = 1) t
+          on schedule.id = t.schedule_id group by movie_id) s
+        on s.movieId = movie.id
+        order by boxOffice desc
+    </select>
+
+    <select id="selectAudiencePrice" resultType="com.example.cinema.po.AudiencePrice">
+        select user_id as userId, sum(fare) as totalPrice from schedule right join
+              (select * from ticket where schedule_id in
+              (select id from schedule where start_time between #{date} and #{nextDate}) and state = 1) t
+        on schedule.id = schedule_id group by user_id
+    </select>
+
+    <select id="selectMoviePlacingRates" resultType="com.example.cinema.po.MoviePlacingRate">
+        select w.movie_id as movieId,w.tickets_num/w.seats_num as rate ,w.name from
+                (select u.movie_id,movie.name,u.seats_num, u.tickets_num from movie inner join
+                (select v.movie_id ,sum(v.column*v.row) as seats_num ,sum(v.ticket_state) as tickets_num from
+                (select t.schedule_id,t.hall_id,t.movie_id,t.column,t.row,t.start_time,ticket.state as ticket_state from ticket
+            right join (select movie_id,hall.id as hall_id,hall.column,hall.row,start_time as start_time,s.id as schedule_id from hall
+            inner join (select * from schedule where start_time between #{date} and #{nextDate}) s on hall.id=s.hall_id) t on ticket.schedule_id=t.schedule_id and ticket.state=1) v
+            group by v.movie_id ) u on movie.id=u.movie_id) w order by rate desc;
+
+    </select>
+
+    <select id="selectMoviePeriodBoxOffice" resultType="com.example.cinema.po.MoviePeriodBoxOffice">
+        select movie.id as movieId, boxOffice,name from movie
+        left join
+
+            (select movie_id as movieId,sum(fare) as boxOffice from
+            (select * from schedule where start_time between #{date} and #{nextDate}) u
+        right join
+            (select schedule_id from ticket where state = 1) t
+        on u.id = t.schedule_id group by movie_id) s
+        on s.movieId = movie.id
+        order by boxOffice desc
+    </select>
+
+
+</mapper>
