@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>电影</title>
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <!-- font-asesome图标库 -->
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+
+    <!-- 引入css样式文件 -->
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/userHome.css"/>
+
+    <!-- 引入js脚本文件 -->
+    <!-- jquery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap 核心 JavaScript 文件 -->
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/userHome.js"></script>
+
+</head>
+<body>
+    <div class="nav-top-container">
+
+        <div class="nav-logo title">NJU-Se电影购票系统</div>
+
+        <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">首页</a></li>
+            <li role="presentation"><a href="/user/movie">电影</a></li>
+        </ul>
+        <div class="btn-group">
+            <button class="nav-user-container btn dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="avatar-sm" src="/images/defaultAvatar.jpg" />
+                <span class="gray-text" style="vertical-align: middle">用户A&nbsp;<span class="caret"></span></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/user/buy">电影票</a></li>
+                <li><a href="/user/member">卡包</a></li>
+
+                <li><a href="/user/purchaserecord">消费记录</a></li>
+
+                <li id="logout"><a href="#">登出</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 可能不需要的功能 -->
+    <div class="content-container">
+        <div class="movie-contianer">
+            <p class="title primary-text">热映电影</p>
+            <ul class="movie-on-list card">
+                <div id="igs">
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/15/20190515002948921.jpg" width="860px" height="360px"></div>
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/15/20190515002730420.jpg" width="860px" height="360px"></div>
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/23/20190523131038257.jpg" width="860px" height="360px"></div>
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/23/20190523130715871.jpg" width="860px" height="360px"></div>
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/15/20190515002604759.jpg" width="860px" height="360px"></div>
+                    <div class="ig"><img src="http://img.movie.iecity.com/Upload/movie/201905/23/20190523130524268.jpg" width="860px" height="360px"></div>
+
+                </div>
+                <div class="btns btn1"><</div>
+                <div class="btns btn2">></div>
+                <div id="tabs">
+                    <div class="tab bgcolor">1</div>
+                    <div class="tab">2</div>
+                    <div class="tab">3</div>
+                    <div class="tab">4</div>
+                    <div class="tab">5</div>
+                    <div class="tab">6</div>
+                </div>
+            </ul>
+
+
+
+            <p class="title primary-text" id="d2">所有热映</p>
+            <ul class="movie-off-list card">
+                <li itemtype="http://schema.org/Movie" itemscope="">
+                    <a href="film1041021101151181229756534853564948.html" target="_blank">
+                        <div class="d1">
+                            <img class="lazy" style="display: inline;" alt="黑衣人：全球追缉" src="http://img.movie.iecity.com/Upload/Movie/201905/23/20190523130942625.jpg" itemprop="image" data-original="http://img.movie.iecity.com/Upload/Movie/201905/23/20190523130942625.jpg">
+                        </div>
+                        <div class="MovieTitle">
+                            <h3 class="color-blue" itemprop="name">黑衣人：全球追缉</h3>
+                            <div class="pf">0</div>
+                        </div>
+                        <div class="MovieDetail">科幻 喜剧 动作</div>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <div class="statistic-container">
+            <p class="title primary-text">票房统计</p>
+            <ul class="top-sell-list card">
+
+            </ul>
+            <p class="title primary-text">最受欢迎</p>
+            <ul class="top-expectation-list card">
+
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>

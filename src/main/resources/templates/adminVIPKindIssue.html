@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>会员卡发布</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/font-awesome.min.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/adminVIPKind.css"/>
+
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/request.js"></script>
+    <script src="/js/adminVIPKindIssue.js"></script>
+</head>
+<body>
+<div class="main-container">
+    <div class="nav-left-container">
+        <div class="nav-user-container" style="margin-bottom: 50px;">
+            <img class="avatar-lg" src="/images/defaultAvatar.jpg" />
+            <p class="title">Admin</p>
+        </div>
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
+            <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
+            <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/manage"><i class="icon-cogs"></i> 影院管理</a></li>
+            <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
+            <li role="presentation"><a href="/admin/movie/refund"><i class="icon-gift"></i> 退票管理 </a></li>
+            <li role="presentation" class="active"><a href="#"><i class="icon-gift"></i> 会员卡发布</a></li>
+            <li role="presentation" id="staffManageModal"><a href="/admin/staff/manage"><i class="icon-gift"></i>员工管理</a></li>
+        </ul>
+    </div>
+    <div class="content-container">
+        <div class="content-header">
+            <span class="title gray-text">会员卡发布</span>
+            <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#VIPKindModal"><i class="icon-plus-sign"></i> 发布会员卡</button>
+        </div>
+        <div class="content-VipKinds">
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="VIPKindModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="VIPKindModalLabel">发布会员卡</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-name-input"><span class="error-text">*</span>会员卡名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-name-input" placeholder="请输入会员卡名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-issue-time-input"><span class="error-text">*</span>发布时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="VIPKind-issue-time-input" placeholder="请选择发布时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-price-input"><span class="error-text">*</span>会员价格</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="VIPKind-price-input" placeholder="请输入会员卡购买价格">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-duration-input">会员时长</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="VIPKind-duration-input" placeholder="请输入会员卡可持续时长，不填表示永久有效">
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-target-input"><span class="error-text">*</span>需满金额</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="VIPKind-target-input" placeholder="请输入参与赠送需满金额">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-give-input"><span class="error-text">*</span>赠送金额</label>
+                        <div class="col-sm-10">
+                            <input type="number" class="form-control" id="VIPKind-give-input" placeholder="请输入赠送金额">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="VIPKind-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="VIPKindEditModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改会员卡</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-name-input"><span class="error-text">*</span>会员卡名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-edit-name-input" placeholder="请输入电影名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-issue-time-input"><span class="error-text">*</span>发布时间</label>
+                        <div class="col-sm-10">
+                            <input type="datetime-local" class="form-control" id="VIPKind-edit-issue-time-input" placeholder="请选择发布时间">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-price-input"><span class="error-text">*</span>会员价格</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-edit-price-input" placeholder="请输入价格">
+                        </div>
+                    </div>
+                    <!--<div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-duration-input">会员时长</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-edit-duration-input" placeholder="请输入会员时长，不输入表示永久">
+                        </div>
+                    </div>-->
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-target-input">需满金额</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-edit-target-input" placeholder="请输入需满金额">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="VIPKind-give-input">赠送金额</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="VIPKind-edit-give-input" placeholder="请输入赠送金额">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="VIPKind-edit-remove-btn">删除</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="VIPKind-edit-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

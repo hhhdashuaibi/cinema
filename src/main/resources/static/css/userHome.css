@@ -1,0 +1,188 @@
+.content-container {
+    display: flex;
+    padding: 20px 20px;
+}
+
+.movie-item {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 18px -30px 18px;
+}
+
+.movie-item .movie-img:hover {
+    border: 2px solid #1caf9a;
+}
+
+.movie-item .movie-name {
+    position: relative;
+    line-height: 30px;
+    top: -30px;
+    background: rgba(0,0,0,0.6);
+    color: #fff;
+    text-align: center;
+}
+
+.movie-item .movie-img {
+    height: 165px;
+    width: 120px;
+    cursor: pointer;
+}
+
+.statistic-item {
+    margin-bottom: 6px;
+    padding: 6px 20px;
+    display: flex;
+    justify-content: space-between;
+    /*border:1px groove #ccc;*/
+    border-radius: 5px;
+    background: #fff;
+}
+
+.movie-contianer {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    height: 850px;
+    justify-content: space-between;
+}
+
+.statistic-container {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 850px;
+    justify-content: space-between;
+    margin-left: 40px;
+}
+
+.movie-contianer ul {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.statistic-container ul {
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    /*padding: 10px 0px;*/
+    background: #e4e7ea;
+    box-shadow: #e4e7ea 1px 0 0 0;
+}
+.movie-on-list{
+    background: #e4e7ea;
+    box-shadow: #e4e7ea 1px 0 0 0;
+}
+.ig{
+    position:absolute;         /*此处设置了绝对定位，所以就是相对于屏幕窗口，此处目的是让所有图片div重叠在一起*/
+}
+.btns{
+    position:absolute;          /*绝对定位*/
+    height:90px;
+    width:60px;
+    background:rgba(0,0,0,0.2);   /*表示背景颜色是黑色，透明度是50%*/
+    border-radius: 100%;
+    color: #FFFFFF;
+    text-align: center;  /*设置内容水平居中*/
+    line-height: 90px;   /*设置内容垂直居中，此数值要与高度一样*/
+    font-size:40px;
+    margin:135px 0px;
+    cursor:pointer;      /*当鼠标滑到此按钮上变成指针的形状*/
+    /*display:none;   设置为隐藏效果, 然后在js中可以设置当鼠标移到图片上时显示此箭头按钮元素，移开时再隐藏*/
+}
+.btn2{
+    margin-left:800px;
+}
+
+ul{
+    /*list-style-type: none;  !*把列表前的原点去掉*!*/
+    position:relative;
+}
+
+#tabs{
+    position:absolute;
+    top:310px;
+    left:325px;
+}
+
+.tab{
+    width:30px;
+    height:30px;
+    background-color:rgba(161,213,191,0.5);
+    float:left;
+    text-align: center;
+    line-height: 30px;
+    margin-right: 10px;
+    border-radius: 100%;     /*设置此div的外边框为一个圆的样式*/
+    cursor:pointer;      /*当鼠标滑到此上变成指针的形状*/
+}
+.bgcolor{
+    background-color:rgba(49,213,188,0.70)
+}
+.movie-off-list li {
+    margin-bottom: 5px;
+    border-bottom: 0px solid #EEEEEE;
+    float: left;
+    width: 167px;
+    height: 280px;
+    overflow: hidden;
+    margin-left: 27px;
+    margin-top: 15px;
+    margin-right: 20px;
+    background-color: #eee;
+}
+
+.d1{
+    font-size: 12px;
+    color: #333333;
+}
+a:hover {
+    color: #4a8109;
+    text-decoration: underline;
+}
+a:link {
+    color: #333333;
+    text-decoration: none;
+}
+.movie-off-list li img {
+    width: 167px;
+    height: 210px;
+    border: 0px solid #CCC;
+}
+.movie-off-list li .MovieTitle {
+    height: 28px;
+    overflow: hidden;
+    padding: 0px 10px 0px 10px;
+}
+.movie-off-list li h3 {
+    line-height: 0px;
+    font-size: 14px;
+    font-weight: bold;
+    float: left;
+    color: #1ba1e2;
+}
+.movie-off-list li .MovieTitle .pf {
+    line-height: 25px;
+    float: right;
+    color: #f00;
+    font-weight: bold;
+    font-family: Georgia,"Times New Roman",Times,serif;
+    font-size: 16px;
+    margin-top: 5px;
+}
+.movie-off-list li .MovieDetail {
+    height: 22px;
+    overflow: hidden;
+    padding: 0px 10px 0px 10px;
+    margin-top: 7px;
+}
+
+
+#d2 {
+    margin-top: 370px;
+}
+.primary-text {
+    color: #1caf9a;
+    margin-top: 20px;
+}

@@ -1,0 +1,42 @@
+.filler-container {
+    padding: 10px;
+}
+.filler-item {
+    display: flex;
+}
+
+.filler-item a {
+    margin: 0 15px;
+<<<<<<< HEAD
+
+=======
+    color: #666;
+>>>>>>> db54bb6a78d5c3bfa52225d79fdf26c333d01596
+    padding: 5px;
+    text-decoration: none;
+}
+
+.filler-item .active {
+    border-radius: 5px;
+    background: #1caf9a;
+    color: #fff;
+}
+
+.to-buy-btn {
+    margin-left: auto;
+<<<<<<< HEAD
+}
+.nav-top-container{
+
+}
+.content-container{
+
+}
+.movie-item card{
+
+}
+.movie-description dark-text{
+
+=======
+>>>>>>> db54bb6a78d5c3bfa52225d79fdf26c333d01596
+}

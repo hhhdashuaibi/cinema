@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.promotion.VIPKindMapper">
+    <insert id="insertOneVIPKind" parameterType="com.example.cinema.po.VIPKind"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into vip_kind(issue_time, duration,name,target_amount,discount_amount,price,discount_percent)
+        values(#{issueTime},#{duration},#{name},#{targetAmount},#{discountAmount},#{price},#{dicountPercent})
+    </insert>
+
+    <select id="selectVIPKindByName" resultMap="VIPKind">
+        select * from vip_kind where name=#{name}
+    </select>
+    <select id="selectVIPKinds" resultMap="VIPKind">
+        select
+            *
+        from
+            vip_kind
+    </select>
+
+    <delete id="deleteVIPKind">
+        delete from vip_kind where name=#{name}
+    </delete>
+
+    <update id="updateVIPKind" parameterType="com.example.cinema.vo.VIPKindForm">
+        update vip_kind set issue_time = #{issueTime}, duration= #{duration}, name=#{name} ,target_amount=#{targetAmount}, discount_amount=#{discountAmount},price=#{price},discount_percent=#{discountPercent}
+    </update>
+
+    <resultMap id="VIPKind" type="com.example.cinema.po.VIPKind">
+        <result column="issue_time" property="issueTime"></result>
+        <result column="id" property="id"></result>
+        <result column="duration" property="duration"></result>
+        <result column="name" property="name"></result>
+        <result column="discount_amount" property="discountAmount"></result>
+        <result column="target_amount" property="targetAmount"></result>
+        <result column="price" property="price"></result>
+        <result column="discount_percent" property="discountPercent"></result>
+    </resultMap>
+</mapper>

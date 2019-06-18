@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.promotion.RefundMapper">
+    <insert id="insertRefund" parameterType="com.example.cinema.po.Refund" useGeneratedKeys="true" keyProperty="id">
+        insert into refund(name,time_limit,start_time,end_time,target_amount)
+        values(#{name},#{timeLimit},#{startTime},#{endTime},#{targetAmount})
+    </insert>
+
+    <update id="changeRefund" >
+        update refund set time_limit=#{timeLimit},start_time=#{startTime},end_time=#{endTime},target_amount=#{targetAmount} where refund_name=#{name}
+    </update>
+
+    <update id="changeRefundAndMovie">
+        insert into refund_movie(refund_id,movie_id) values
+        <foreach collection="movieId" item="item" index="index"
+                 separator=",">
+            (#{refundId},#{item})
+        </foreach>
+    </update>
+
+    <insert id="insertRefundAndMovie">
+        insert into refund_movie(refund_id,movie_id) values
+        <foreach collection="movieId" item="item" index="index"
+                 separator=",">
+            (#{refundId},#{item})
+        </foreach>
+    </insert>
+
+    <select id="SelectRefunds" resultMap="Refund">
+        select
+            *
+        from
+            refund a
+        left join
+            refund_movie am
+        on
+            a.id=am.refund_id
+        left join
+            movie m
+        on
+            am.movie_id=m.id
+
+    </select>
+
+    <select id="SelectByID" resultMap="Refund">
+        select
+            *
+        from
+            refund a
+        left join
+            refund_movie am
+        on
+            a.id=am.refund_id
+        left join
+            movie m
+        on
+            am.movie_id=m.id
+        WHERE a.id=#{id}
+    </select>
+
+    <resultMap id="Refund" type="com.example.cinema.po.Refund">
+        <result column="time_limit" property="timeLimit"></result>
+        <result column="id" property="id"></result>
+        <result column="refund_name" property="name"></result>
+        <result column="start_time" property="startTime"></result>
+        <result column="end_time" property="endTime"></result>
+        <result column="target_amount" property="targetAmount"></result>
+        <collection property="movieList" ofType="com.example.cinema.po.Movie">
+            <id column="movie_id" property="id"></id>
+            <result column="poster_url" property="posterUrl"></result>
+            <result column="screen_writer" property="screenWriter"></result>
+            <result column="start_date" property="startDate"></result>
+            <result column="end_date" property="endDate"></result>
+            <result column="name" property="name"></result>
+            <result column="director" property="director"></result>
+            <result column="type" property="type"></result>
+            <result column="country" property="country"></result>
+            <result column="language" property="language"></result>
+            <result column="length" property="length"></result>
+            <result column="description" property="description"></result>
+            <result column="status" property="status"></result>
+            <result column="starring" property="starring"></result>
+        </collection>
+    </resultMap>
+</mapper>
