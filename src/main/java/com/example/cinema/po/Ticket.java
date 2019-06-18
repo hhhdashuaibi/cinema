@@ -31,6 +31,24 @@ public class Ticket {
      */
     private int rowIndex;
 
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Timestamp getTicketTime() {
+        return ticketTime;
+    }
+
+    public void setTicketTime(Timestamp ticketTime) {
+        this.ticketTime = ticketTime;
+    }
+
     /**
      * 订单状态：
      * 0：未完成 1：已完成 2:已失效
@@ -58,6 +76,7 @@ public class Ticket {
         vo.setScheduleId(this.getScheduleId());
         vo.setId(this.getId());
         vo.setUserId(this.getUserId());
+        vo.setPrice(this.getPrice());
         String stateString;
         switch (state) {
             case 0:

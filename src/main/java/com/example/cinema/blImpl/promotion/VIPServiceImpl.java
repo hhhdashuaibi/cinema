@@ -1,11 +1,15 @@
 package com.example.cinema.blImpl.promotion;
 
 import com.example.cinema.bl.promotion.VIPService;
+import com.example.cinema.data.management.ScheduleMapper;
 import com.example.cinema.data.promotion.VIPCardMapper;
+import com.example.cinema.data.sales.TicketMapper;
+import com.example.cinema.po.Ticket;
 import com.example.cinema.vo.VIPCardForm;
 import com.example.cinema.po.VIPCard;
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.VIPInfoVO;
+import com.example.cinema.vo.VIPRefundForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +22,13 @@ public class VIPServiceImpl implements VIPService {
     @Autowired
     VIPCardMapper vipCardMapper;
 
-    @Override
+    @Autowired
+    TicketMapper ticketMapper;
 
+    @Autowired
+    ScheduleMapper scheduleMapper;
+
+    @Override
     public ResponseVO addVIPCard(VIPCardForm vipCardForm) {
         VIPCard vipCard = new VIPCard();
         vipCard.setUserId(vipCardForm.getUserId());
@@ -85,6 +94,24 @@ public class VIPServiceImpl implements VIPService {
             }
             return ResponseVO.buildSuccess(vipCard);
         } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO refundCard(VIPRefundForm vipRefundForm) {
+        try {
+            VIPCard vipCard = vipCardMapper.selectCardById(vipRefundForm.getVIPcardID());
+            if(vipCard==null){
+                return ResponseVO.buildFailure("失败");
+            }else {
+                vipCard.setBalance(vipCard.getBalance() + vipRefundForm.getAmount());
+                vipCardMapper.updateCardBalance(vipCard.getId(),vipCard.getBalance());
+                return ResponseVO.buildSuccess();
+            }
+
+        }catch (Exception e){
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");
         }

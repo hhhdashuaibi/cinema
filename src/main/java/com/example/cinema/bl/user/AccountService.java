@@ -30,4 +30,5 @@ public interface AccountService {
     public ResponseVO getQualifiedUsers(double targetPurchase);
 
     public ResponseVO updateTotalPurchase(double purchaseAmount,int userId);
+
 }

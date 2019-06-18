@@ -2,7 +2,7 @@ package com.example.cinema.bl.promotion;
 
 import com.example.cinema.vo.VIPCardForm;
 import com.example.cinema.vo.ResponseVO;
-
+import com.example.cinema.vo.VIPRefundForm;
 
 
 /**
@@ -23,9 +23,8 @@ public interface VIPService {
 
     ResponseVO getCardByUserId(int userId);
 
+    ResponseVO refundCard(VIPRefundForm vipRefundForm);
 
-    ResponseVO updateVIPCard(String kind,double targetAmount,double discountAmount,double discountPercent);
-
-
+    ResponseVO updateVIPCard(String kind, double targetAmount, double discountAmount, double discountPercent);
 
 }

@@ -27,6 +27,4 @@ public interface ActivityMapper {
     List<Activity> selectAllActivities();
 
 
-
-
 }

@@ -2,10 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cinema.data.user.AccountMapper">
     <insert id="createNewAccount" useGeneratedKeys="true" keyProperty="id">
-
         insert into user(username,password,power,total_purchase)
         values(#{username},#{password},#{power},#{totalPurchase})
-
     </insert>
 
     <select id="getAccountByName" resultMap="User">
@@ -27,7 +25,6 @@
         <result column="name" property="name"></result>
         <result column="power" property="power"></result>
         <result column="total_purchase" property="totalPurchase"></result>
-
     </resultMap>
 
     <update id="updatePowerAndName">

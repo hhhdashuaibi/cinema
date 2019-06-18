@@ -3,10 +3,11 @@ package com.example.cinema.controller.promotion;
 
 import com.example.cinema.bl.promotion.VIPKindService;
 import com.example.cinema.bl.promotion.VIPService;
+import com.example.cinema.po.VIPCard;
 import com.example.cinema.vo.VIPCardForm;
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.VIPKindForm;
-
+import com.example.cinema.vo.VIPRefundForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -47,6 +48,10 @@ public class VIPCardController {
 
     @PostMapping("/issue")
     public ResponseVO addVIPKind(@RequestBody VIPKindForm vipKindForm){return vipKindService.addVIPKind(vipKindForm);}
+    @PostMapping("/refund")
+    public ResponseVO refundVIPCard(@RequestBody VIPRefundForm vipRefundForm){
+        return vipService.refundCard(vipRefundForm);
+    }
     @DeleteMapping("/deleteVIPKind")
     public ResponseVO deleteVIPKind(@RequestParam String name){
         return vipKindService.deleteVIPKind(name);

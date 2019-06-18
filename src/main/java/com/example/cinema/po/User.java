@@ -7,15 +7,16 @@ import com.example.cinema.data.sales.PurchaseMapper;
 
 import java.util.List;
 
+
 /**
  * @author huwen
  * @date 2019/3/23
  */
 public class User {
-    PurchaseMapper purchaseMapper;
     private Integer id;
     private String username;
     private String password;
+
     /*
      * 总消费金额
      * */
@@ -78,4 +79,5 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
 }

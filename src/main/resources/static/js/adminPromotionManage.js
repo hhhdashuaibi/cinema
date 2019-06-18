@@ -129,8 +129,6 @@ $(document).ready(function() {
                 alert(JSON.stringify(error));
             }
         );
-
-
     });
 
     //ES6新api 不重复集合 Set

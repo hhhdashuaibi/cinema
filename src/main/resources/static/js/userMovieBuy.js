@@ -313,7 +313,6 @@ function postPayRequest() {
                 alert("购票失败");
             }
         )
-
         }else{
         postRequest(
             '/ticket/buy?ticketId=' + order.ticketId + '&couponId=' + order.couponId,

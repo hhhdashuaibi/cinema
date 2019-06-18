@@ -48,8 +48,8 @@ $(document).ready(function() {
                 "    <div class='refund-card card'>" +
                 "       <div class='refund-line'>" +
                 "           <span class='title'>规则名称： "+refund.name+"  </span>" +
-                "           <span class='gray-text'>时间限制： "+refund.timeLimit+"天</span>" +
-                "           <span class='title'>最低金额："+refund.targetAmount+"元</span>"+
+                "           <span class='title'>时间限制： "+refund.timeLimit+" 天</span>" +
+                "           <span class='title'>最低金额： "+refund.targetAmount+" 元</span>"+
                 "       </div>" +
                 "       <div class='refund-line'>" +
                 "           <span>规则有效时间："+formatDate(new Date(refund.startTime))+"至"+formatDate(new Date(refund.endTime))+"</span>" +
@@ -99,7 +99,7 @@ $(document).ready(function() {
             form,
                 function (res) {
                     if(res.success){
-                        getRefunds();
+                        location.reload();
                         $("#refund-changeModal").modal('hide');
                     }else {
                         alert(res.message());

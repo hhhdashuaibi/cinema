@@ -71,4 +71,5 @@ public class UserVO {
     public void setTotalPurchase(double totalPurchase) {
         this.totalPurchase = totalPurchase;
     }
+
 }

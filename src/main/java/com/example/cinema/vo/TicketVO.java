@@ -28,6 +28,24 @@ public class TicketVO {
      */
     private int rowIndex;
 
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public Timestamp getTicketTime() {
+        return ticketTime;
+    }
+
+    public void setTicketTime(Timestamp ticketTime) {
+        this.ticketTime = ticketTime;
+    }
+
     /**
      * 订单状态
      */

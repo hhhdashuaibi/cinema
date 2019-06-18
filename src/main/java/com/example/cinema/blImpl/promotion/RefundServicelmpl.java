@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class RefundServicelmpl implements RefundService {
 
@@ -52,9 +54,8 @@ public class RefundServicelmpl implements RefundService {
     @Override
     public ResponseVO changeRefund(RefundForm refundForm) {
         try {
-            Refund refund=new Refund();
-            refund.setId(refundForm.getId());
-            refund.setName(refundForm.getName());
+            System.out.println(refundForm.getName());
+            Refund refund=refundMapper.SelectByID(Integer.parseInt(refundForm.getName()));
             refund.setStartTime(refundForm.getStartTime());
             refund.setEndTime(refundForm.getEndTime());
             refund.setTargetAmount(refundForm.getTargetAmount());
@@ -62,6 +63,9 @@ public class RefundServicelmpl implements RefundService {
             refundMapper.changeRefund(refund);
             if(refundForm.getMovieList().size()!=0&&refundForm.getMovieList()!=null){
                 refundMapper.changeRefundAndMovie(refund.getId(),refundForm.getMovieList());
+            }
+            else {
+                refundMapper.deleteRefundAndMovie(refund.getId());
             }
             return ResponseVO.buildSuccess(refundMapper.SelectByID(refund.getId()));
         }catch (Exception e){
