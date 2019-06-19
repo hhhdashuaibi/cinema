@@ -13,17 +13,12 @@ $(document).ready(function () {
                 if (res.success) {
                     sessionStorage.setItem('username', formData.username);
                     sessionStorage.setItem('id', res.content.id);
-
-
-
                     sessionStorage.setItem('power',res.content.power);
                     if (res.content.power<2) {
                         // sessionStorage.setItem('role', 'admin');
                         window.location.href = "/admin/movie/manage"
                     } else {
                         // sessionStorage.setItem('role', 'user');
-
-
                         window.location.href = "/user/home"
                     }
                 } else {

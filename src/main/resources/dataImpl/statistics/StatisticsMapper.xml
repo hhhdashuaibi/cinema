@@ -27,37 +27,29 @@
 
     <select id="selectMoviePlacingRates" resultType="com.example.cinema.po.MoviePlacingRate">
         select w.movie_id as movieId,w.tickets_num/w.seats_num as rate ,w.name from
-
-(select u.movie_id,movie.name,u.seats_num, u.tickets_num from movie inner join
-(select m.movie_id, sum(m.row*m.column) as seats_num,sum(m.tickets_num) as tickets_num from
-(select v.schedule_id,v.movie_id ,v.column ,v.row  ,sum(v.ticket_state) as tickets_num from
-(select t.schedule_id,t.hall_id,t.movie_id,t.column,t.row,t.start_time,ticket.state as ticket_state from ticket
-right join (select movie_id,hall.id as hall_id,hall.column,hall.row,start_time as start_time,s.id as schedule_id from hall
-inner join (select * from schedule where start_time between #{date} and #{nextDate}) s on hall.id=s.hall_id) t on ticket.schedule_id=t.schedule_id and ticket.state=1) v
-group by v.schedule_id) m group by m.movie_id) u on movie.id=u.movie_id) w order by rate desc;
-
-
-
+                (select u.movie_id,movie.name,u.seats_num, u.tickets_num from movie inner join
+                (select m.movie_id, sum(m.row*m.column) as seats_num,sum(m.tickets_num) as tickets_num from
+                (select v.schedule_id,v.movie_id ,v.column ,v.row  ,sum(v.ticket_state) as tickets_num from
+                (select t.schedule_id,t.hall_id,t.movie_id,t.column,t.row,t.start_time,ticket.state as ticket_state from ticket
+            right join (select movie_id,hall.id as hall_id,hall.column,hall.row,start_time as start_time,s.id as schedule_id from hall
+            inner join (select * from schedule where start_time between #{date} and #{nextDate}) s on hall.id=s.hall_id) t on ticket.schedule_id=t.schedule_id and ticket.state=1) v
+            group by v.schedule_id) m group by m.movie_id) u on movie.id=u.movie_id) w order by rate desc;
     </select>
 
     <select id="selectMoviePeriodBoxOffice" resultType="com.example.cinema.po.MoviePeriodBoxOffice">
         select movie.id as movieId, boxOffice,name from movie
         left join
-
-          (select movie_id as movieId,sum(fare) as boxOffice from
-          (select * from schedule where start_time between #{date} and #{nextDate}) u
+            (select movie_id as movieId,sum(fare) as boxOffice from
+            (select * from schedule where start_time between #{date} and #{nextDate}) u
           right join
-          (select schedule_id from ticket where state = 1) t
+            (select schedule_id from ticket where state = 1) t
           on u.id = t.schedule_id group by movie_id) s
-
         on s.movieId = movie.id
         order by boxOffice desc
     </select>
 
-
     <select id="selectMovieBlockHeight" resultType="com.example.cinema.po.MovieBlockHeight">
         select name as blockType,count(id) as blockHeight from movie
     </select>
-
 
 </mapper>

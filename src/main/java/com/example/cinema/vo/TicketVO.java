@@ -33,7 +33,6 @@ public class TicketVO {
      */
     private String state;
 
-
     private Timestamp ticketTime;
 
     public Timestamp getTime() {
@@ -42,7 +41,6 @@ public class TicketVO {
 
     public void setTime(Timestamp time) {
         this.ticketTime = time;
-
     }
 
     public TicketVO() {

@@ -12,7 +12,7 @@ public interface ActivityService {
 
     ResponseVO getActivities();
 
-
+    ResponseVO getLastActivity();
 
 
 }

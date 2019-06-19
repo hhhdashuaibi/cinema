@@ -1,13 +1,10 @@
 package com.example.cinema.controller.promotion;
 
-
-
 import com.example.cinema.bl.promotion.VIPKindService;
 import com.example.cinema.bl.promotion.VIPService;
 import com.example.cinema.vo.VIPCardForm;
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.VIPKindForm;
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,15 +18,13 @@ public class VIPCardController {
     @Autowired
     VIPService vipService;
 
-
     @Autowired
     VIPKindService vipKindService;
     @PostMapping("/add")
     public ResponseVO addVIP(@RequestBody VIPCardForm vipCardForm){
         return vipService.addVIPCard(vipCardForm);
-
-
     }
+
     @GetMapping("{userId}/get")
     public ResponseVO getVIP(@PathVariable int userId){
         return vipService.getCardByUserId(userId);
@@ -46,7 +41,6 @@ public class VIPCardController {
         return vipService.charge(vipCardForm);
     }
 
-
     //@PostMapping("/updateVIPCard")
     //public ResponseVO updateVIPCard(@RequestParam String kind,@RequestParam double targetAmount,@RequestParam double discountAmount){return vipService.updateVIPCard(kind,targetAmount,discountAmount);}
 
@@ -62,9 +56,5 @@ public class VIPCardController {
     public ResponseVO getVIPKinds(){return vipKindService.getVIPKinds();}
     @PostMapping("/updateVIPKind")
     public ResponseVO updateVIPKind(@RequestBody VIPKindForm vipKindForm){return vipKindService.updateVIPKind(vipKindForm);}
-
-
-
-
 
 }

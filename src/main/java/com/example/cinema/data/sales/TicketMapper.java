@@ -4,8 +4,6 @@ import com.example.cinema.po.Ticket;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.scheduling.annotation.Scheduled;
-
-
 import java.sql.Timestamp;
 
 import java.util.List;
@@ -25,12 +23,7 @@ public interface TicketMapper {
 
     void updateTicketState(@Param("ticketId") int ticketId, @Param("state") int state);
 
-
-
     void updateTicketPrice(@Param("ticketId") int ticketId,@Param("price") int price);
-
-
-
 
     List<Ticket> selectTicketsBySchedule(int scheduleId);
 
@@ -40,9 +33,7 @@ public interface TicketMapper {
 
     List<Ticket> selectTicketByUser(int userId);
 
-
     List<Ticket> selectTicketsByPurchase(Timestamp purchaseTime);
-
 
     @Scheduled(cron = "0/1 * * * * ?")
     void cleanExpiredTicket();

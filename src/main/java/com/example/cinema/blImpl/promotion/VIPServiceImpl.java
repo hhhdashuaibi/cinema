@@ -50,14 +50,10 @@ public class VIPServiceImpl implements VIPService {
     @Override
     public ResponseVO getVIPInfo() {
         VIPInfoVO vipInfoVO = new VIPInfoVO();
-
-
 //        vipInfoVO.setDescription(VIPCard.description);
 //        vipInfoVO.setPrice(VIPCard.price);
 //        vipInfoVO.setDuration(VIPCard.duration);
 //        vipInfoVO.setName(VIPCard.kind);
-
-
         return ResponseVO.buildSuccess(vipInfoVO);
     }
 
@@ -92,7 +88,6 @@ public class VIPServiceImpl implements VIPService {
             return ResponseVO.buildFailure("失败");
         }
     }
-
 
     @Override
     public ResponseVO updateVIPCard(String kind,double targetAmount,double discountAmount,double discountPercent){

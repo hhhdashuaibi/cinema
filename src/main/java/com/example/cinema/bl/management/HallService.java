@@ -38,4 +38,5 @@ public interface HallService {
      */
     ResponseVO deleteHall(int id);
 
+
 }

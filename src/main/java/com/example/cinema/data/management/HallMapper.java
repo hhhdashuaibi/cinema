@@ -53,5 +53,4 @@ public interface HallMapper {
      */
     void deleteHall(int id);
 
-
 }

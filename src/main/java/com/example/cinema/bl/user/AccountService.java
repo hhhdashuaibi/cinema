@@ -22,12 +22,12 @@ public interface AccountService {
      */
     public UserVO login(UserForm userForm);
 
-
     public ResponseVO updatePowerAndName(UserForm userForm);
 
     public ResponseVO getStaff();
 
+    public ResponseVO getQualifiedUsers(double targetPurchase);
 
-
+    public ResponseVO updateTotalPurchase(double purchaseAmount,int userId);
 
 }

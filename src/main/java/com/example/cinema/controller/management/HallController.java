@@ -5,9 +5,7 @@ import com.example.cinema.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import org.springframework.web.bind.annotation.RequestParam;
-
 import org.springframework.web.bind.annotation.RestController;
 
 /**影厅管理
@@ -23,7 +21,6 @@ public class HallController {
     public ResponseVO searchAllHall(){
         return hallService.searchAllHall();
     }
-
 
     @RequestMapping(value = "hall/add", method = RequestMethod.GET)
     public ResponseVO addHall(@RequestParam String name,@RequestParam String type){

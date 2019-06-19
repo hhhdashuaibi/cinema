@@ -38,7 +38,6 @@ public class StatisticsController {
         return statisticsService.getMoviePlacingRateByDate(date);
     }
 
-
     @RequestMapping(value = "statistics/populars/movie", method = RequestMethod.GET)
     public ResponseVO getPopularMovies(@RequestParam int days, @RequestParam int movieNum){
         return statisticsService.getPopularMovies(days, movieNum);
@@ -47,15 +46,5 @@ public class StatisticsController {
     public ResponseVO getMovieBlockHeight(){
         return statisticsService.getMovieBlockHeight();
     }
-
-
-
-
-
-
-
-
-
-
 
 }

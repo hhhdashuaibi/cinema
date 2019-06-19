@@ -3,10 +3,8 @@
 <mapper namespace="com.example.cinema.data.promotion.CouponMapper">
     <insert id="insertCoupon" parameterType="com.example.cinema.po.Coupon"
             useGeneratedKeys="true" keyProperty="id">
-
         insert into coupon(description,name,target_amount,discount_amount,least_purchase,start_time,end_time)
         values(#{description},#{name},#{targetAmount},#{discountAmount},#{leastPurchase},#{startTime},#{endTime})
-
     </insert>
     <insert id="insertCouponUser">
         insert into coupon_user(coupon_id,user_id)
@@ -27,7 +25,6 @@
 
     <select id="selectCouponByUserAndAmount" resultMap="Coupon">
         select * from coupon c left join coupon_user  cu on c.id=cu.coupon_id where cu.user_id=#{userId} and c.start_time &lt; Now() and c.end_time &gt; Now() and #{amount}>c.target_amount
-
     </select>
 
     <resultMap id="Coupon" type="com.example.cinema.po.Coupon">
@@ -36,9 +33,7 @@
         <result column="name" property="name"></result>
         <result column="target_amount" property="targetAmount"></result>
         <result column="discount_amount" property="discountAmount"></result>
-
         <result column="least_purchase" property="leastPurchase"></result>
-
         <result column="start_time" property="startTime"></result>
         <result column="end_time" property="endTime"></result>
     </resultMap>

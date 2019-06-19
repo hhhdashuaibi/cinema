@@ -23,13 +23,10 @@ public class CouponForm {
      */
     private double discountAmount;
     /**
-<<<<<<< HEAD
-=======
      * 用户最低消费
      */
     private double leastPurchase;
     /**
->>>>>>> db54bb6a78d5c3bfa52225d79fdf26c333d01596
      * 可用时间
      */
     private Timestamp startTime;
@@ -86,7 +83,6 @@ public class CouponForm {
         this.discountAmount = discountAmount;
     }
 
-
     public double getLeastPurchase() {
         return leastPurchase;
     }
@@ -94,7 +90,6 @@ public class CouponForm {
     public void setLeastPurchase(double leastPurchase) {
         this.leastPurchase = leastPurchase;
     }
-
 
     public CouponForm() {
     }

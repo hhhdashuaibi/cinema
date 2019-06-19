@@ -1,24 +1,17 @@
 $(document).ready(function () {
-
-
     getVIP();
     getCoupon();
     getRechargeList();
-
 });
 
 var isBuyState = true;
 var vipCardId;
-
-
 var vipKind;
 var targetAmount;
 var discountAmount;
 var nowTime =Date.parse(new Date());
 function getVIP() {
     console.log('mmp');
-
-
     getRequest(
         '/vip/' + sessionStorage.getItem('id') + '/get',
         function (res) {
@@ -27,7 +20,6 @@ function getVIP() {
                 $("#member-card").css("visibility", "visible");
                 $("#member-card").css("display", "");
                 $("#nonmember-card").css("display", "none");
-
                 vipCardId = res.content.id;
                 $("#member-kind").text(res.content.kind);
                 $("#member-balance").text("¥" + res.content.balance.toFixed(2));
@@ -39,7 +31,6 @@ function getVIP() {
             } else {
                 // 非会员
                 getAllVipKinds();
-
                 $("#member-card").css("display", "none");
                 $("#nonmember-card").css("display", "");
             }
@@ -47,9 +38,6 @@ function getVIP() {
         function (error) {
             alert(error);
         });
-
-
-
 }
 function getAllVipKinds() {
     getRequest(
@@ -86,16 +74,13 @@ function renderVIPKinds(VIPKinds) {
 }
 
 function buyClick(e) {
-
     clearForm();
     $('#buyModal').modal('show')
     $("#userMember-amount-group").css("display", "none");
     isBuyState = true;
-
     vipKind=e.getAttribute("data-kind")
     targetAmount=e.getAttribute("data-targetAmount")
     discountAmount=e.getAttribute("data-discountAmount")
-
 }
 
 function chargeClick() {
@@ -116,7 +101,6 @@ function confirmCommit() {
         if ($('#userMember-cardNum').val() === "123123123" && $('#userMember-cardPwd').val() === "123123") {
             if (isBuyState) {
                 postRequest(
-
                     '/vip/add',
                     {
                         userId:sessionStorage.getItem('id'),
@@ -124,7 +108,6 @@ function confirmCommit() {
                         targetAmount:targetAmount,
                         discountAmount:discountAmount
                     },
-
                     function (res) {
                         $('#buyModal').modal('hide');
                         alert("购买会员卡成功");
@@ -134,12 +117,10 @@ function confirmCommit() {
                         alert(error);
                     });
             } else {
-
                 var payMoney=parseInt($('#userMember-amount').val());
                 postRequest(
                     '/vip/charge',
                     {vipId: vipCardId, amount: payMoney},
-
                     function (res) {
                         $('#buyModal').modal('hide');
                         alert("充值成功");
@@ -148,7 +129,6 @@ function confirmCommit() {
                     function (error) {
                         alert(error);
                     });
-
                 postRequest(
                     '/recharge/create',
                     getRechargeItem(payMoney),
@@ -159,7 +139,6 @@ function confirmCommit() {
                         alert("充值失败");
                     }
                 )
-
             }
         } else {
             alert("银行卡号或密码错误");
@@ -223,7 +202,6 @@ function getCoupon() {
 
 function formatDate(date) {
     return date.substring(5, 10).replace("-", ".");
-
 }
 
 
@@ -273,5 +251,3 @@ function getRechargeItem(payMoney) {
         payAmount:payMoney,
     }
 }
-
-

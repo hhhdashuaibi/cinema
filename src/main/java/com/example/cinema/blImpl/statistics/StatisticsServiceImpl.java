@@ -31,7 +31,6 @@ public class StatisticsServiceImpl implements StatisticsService {
                 requireDate = new Date();  //new Date()默认是今天
             }
 
-
             // System.out.println("In getScheduleRateByDate: requireDate1 is "+requireDate);
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -86,8 +85,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             //String string = "2019-04-20 19:00:00";
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-
             Date requireDate = date;
             if(requireDate == null){
                 requireDate = new Date();
@@ -96,8 +93,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             requireDate = simpleDateFormat.parse(simpleDateFormat.format(requireDate));  //格式化日期date对象后将其赋值给requireDate对象
 
             Date nextDate = getNumDayAfterDate(requireDate, 1);  //nextDate定义为date的隔一天
-
-
             return ResponseVO.buildSuccess(moviePlacingRateList2MoviePlacingRateVOList(statisticsMapper.selectMoviePlacingRates(requireDate, nextDate)));
         }catch (Exception e){
             e.printStackTrace();
@@ -148,8 +143,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             return ResponseVO.buildFailure("失败");
         }
     }
-
-
 
     /**
      * 获得num天后的日期

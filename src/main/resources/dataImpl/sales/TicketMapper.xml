@@ -3,7 +3,6 @@
 <mapper namespace="com.example.cinema.data.sales.TicketMapper">
     <insert id="insertTicket" parameterType="com.example.cinema.po.Ticket"
             useGeneratedKeys="true" keyProperty="id">
-
         insert into ticket(user_id,schedule_id,column_index,row_index,state,ticket_time)
         values(#{userId}, #{scheduleId},#{columnIndex},#{rowIndex},#{state},#{ticketTime})
     </insert>
@@ -14,7 +13,6 @@
         <foreach collection="list" item="item" index="index"
                  separator=",">
             (#{item.userId}, #{item.scheduleId},#{item.columnIndex},#{item.rowIndex},#{item.state},#{item.ticketTime})
-
         </foreach>
 
     </insert>
@@ -35,23 +33,17 @@
         select * from ticket where user_id=#{userId}
     </select>
 
-
     <select id="selectTicketsByPurchase" resultMap="Ticket">
         select * from ticket where UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=0 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=-1 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=-2 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=-3 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=-4 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=1 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=2 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=3 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=4 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=5 or UNIX_TIMESTAMP(#{purchaseTime})-UNIX_TIMESTAMP(ticket_time)=-5
     </select>
-
 
     <update id="updateTicketState">
         update ticket set state = #{state} where id=#{ticketId}
     </update>
 
-
-
     <update id="updateTicketPrice">
         update ticket set ticket_price=#{price} where id=#{ticketId}
     </update>
-
-
 
     <delete id="deleteTicket">
         delete from ticket where id=#{ticketId}
@@ -64,13 +56,11 @@
         <result column="column_index" property="columnIndex"></result>
         <result column="row_index" property="rowIndex"></result>
         <result column="state" property="state"></result>
-
         <result column="ticket_time" property="ticketTime"></result>
     </resultMap>
 
     <update id="cleanExpiredTicket">
         update ticket SET  state =2 WHERE (unix_timestamp(now())-unix_timestamp(#{ticketTime}))/60>15 and state=0;
-
     </update>
 
 </mapper>

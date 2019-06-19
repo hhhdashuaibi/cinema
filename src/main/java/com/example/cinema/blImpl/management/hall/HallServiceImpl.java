@@ -2,23 +2,19 @@ package com.example.cinema.blImpl.management.hall;
 
 import com.example.cinema.bl.management.HallService;
 import com.example.cinema.data.management.HallMapper;
-
 import com.example.cinema.data.management.ScheduleMapper;
 import com.example.cinema.po.Hall;
 import com.example.cinema.po.ScheduleItem;
-
 import com.example.cinema.vo.HallVO;
 import com.example.cinema.vo.ResponseVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
-
 
 /**
  * @author fjj
@@ -31,7 +27,6 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
 
     @Autowired
     private ScheduleMapper scheduleMapper;
-
 
     @Override
     public ResponseVO searchAllHall() {
@@ -53,7 +48,6 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
         }
 
     }
-
 
     @Override
     public ResponseVO addHall(String name,String type){
@@ -163,7 +157,6 @@ public class HallServiceImpl implements HallService, HallServiceForBl {
         System.out.println(scheduleItems);
         return scheduleItems;
     }
-
 
     private List<HallVO> hallList2HallVOList(List<Hall> hallList){
         List<HallVO> hallVOList = new ArrayList<>();

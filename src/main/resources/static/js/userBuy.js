@@ -4,10 +4,7 @@ $(document).ready(function () {
 
     function getMovieList() {
         getRequest(
-
             '/ticket/get/show/' + sessionStorage.getItem('id'),
-
-
             function (res) {
                 renderTicketList(res.content);
             },
@@ -36,7 +33,6 @@ $(document).ready(function () {
     }
 
     function renderTicket(schedule,ticketInfo) {
-
         var ticketDomStr='';
         ticketDomStr +=
             "<tr>" +
@@ -108,8 +104,6 @@ $(document).ready(function () {
                 alert(error)
             }
         )
-
-
 
     }
 

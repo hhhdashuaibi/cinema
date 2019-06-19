@@ -6,7 +6,6 @@ import com.example.cinema.vo.TicketForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.sql.Timestamp;
 
 import java.util.List;
@@ -40,14 +39,10 @@ public class TicketController {
         return ticketService.getTicketByUser(userId);
     }
 
-
-
     @GetMapping("/get/show/{userId}")
     public ResponseVO getTicketRefundByUserId(@PathVariable int userId){
         return ticketService.getRefundTicketByUser(userId);
     }
-
-
 
     @GetMapping("/get/occupiedSeats")
     public ResponseVO getOccupiedSeats(@RequestParam int scheduleId){
@@ -59,19 +54,14 @@ public class TicketController {
         return ticketService.getByPurchase(purchaseId);
     }
 
-
     @PostMapping("/cancel")
     public ResponseVO cancelTicket(@RequestParam List<Integer> ticketId){
         return ticketService.cancelTicket(ticketId);
     }
 
-
-
     @PostMapping("/delete")
     public ResponseVO deleteTicket(@RequestParam int ticketId){
         return ticketService.deleteTicket(ticketId);
     }
-
-
 
 }

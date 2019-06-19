@@ -12,14 +12,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
-
-
 import java.sql.Timestamp;
 
 /**
  * Created by liying on 2019/4/14.
  */
-
 
 @Component
 public class VIPCard {
@@ -45,8 +42,6 @@ public class VIPCard {
 
     public int duration;
 
-
-
     /**
      * 用户id
      */
@@ -66,7 +61,6 @@ public class VIPCard {
      * 办卡日期
      */
     private Timestamp joinDate;
-
 
     /*
      * 折扣
@@ -96,7 +90,6 @@ public class VIPCard {
         }catch (Exception e) {
             e.printStackTrace();
         }*/
-
 
     }
 
@@ -132,11 +125,6 @@ public class VIPCard {
     public void setJoinDate(Timestamp joinDate) {
         this.joinDate = joinDate;
     }
-
-
-
-
-
 
     public String getKind() {
         return kind;
@@ -175,6 +163,5 @@ public class VIPCard {
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
     }
-
 
 }

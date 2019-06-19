@@ -1,20 +1,14 @@
 var selectedSeats = []
 var scheduleId;
-
 var amount;
-
 var order = {ticketId: [], couponId: 0};
 var coupons = [];
 var isVIP = false;
 var useVIP = true;
-
 var payTime=new Date().getTime();
-
 
 $(document).ready(function () {
     scheduleId = parseInt(window.location.href.split('?')[1].split('&')[1].split('=')[1]);
-
-
 
     getInfo();
 
@@ -213,7 +207,6 @@ function orderConfirmClick() {
         });
 }
 
-
 function switchPay(type) {
     useVIP = (type == 0);
     if (type == 0) {
@@ -288,16 +281,12 @@ function postPayRequest() {
     $('#buyModal').modal('hide');
 
     payTime=Math.round(new Date().getTime()/1000);
-
     if (useVIP) {
         postRequest(
             '/ticket/vip/buy?ticketId=' + order.ticketId + '&couponId=' + order.couponId,
             null,
             function (res) {
-
-
                 //alert("购票成功");
-
             },
             function (error) {
                 alert("购票失败");
@@ -308,24 +297,28 @@ function postPayRequest() {
             '/purchase/create',
             form,
             function (res) {
-
                 //alert("购票成功");
             },
             function (error) {
                 alert("购票失败");
             }
         )
-
-
+        postRequest(
+            '/updateTotalPurchase?purchaseAmount='+$("#order-actual-total").text().substring(2)+'&userId='+sessionStorage.getItem("id"),
+            null,
+            function (res) {
+                //alert("购票成功");
+            },
+            function (error) {
+                alert("购票失败");
+            }
+        )
         }else{
         postRequest(
             '/ticket/buy?ticketId=' + order.ticketId + '&couponId=' + order.couponId,
             null,
             function (res) {
-
-
                 //alert("购票成功");
-
             },
             function (error) {
                 alert("购票失败");
@@ -335,7 +328,6 @@ function postPayRequest() {
             '/purchase/create',
             getPurchaseItem(0),
             function (res) {
-
                 //alert("购票成功");
             },
             function (error) {
@@ -345,8 +337,6 @@ function postPayRequest() {
     }
 
 }
-
-
 function getPurchaseItem(payMethod,purchaseState){
     return{
         userId:sessionStorage.getItem("id"),
@@ -355,7 +345,6 @@ function getPurchaseItem(payMethod,purchaseState){
         purchaseState:purchaseState,
     }
 }
-
 
 function validateForm() {
     var isValidate = true;

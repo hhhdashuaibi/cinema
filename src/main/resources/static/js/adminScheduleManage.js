@@ -12,9 +12,6 @@ $(document).ready(function() {
     var hallId,
         scheduleDate = formatDate(new Date()),
         schedules = [];
-
-
-
     if(sessionStorage.getItem('power')>0){
         $("#staffManageModal").hide();
     }
@@ -23,7 +20,6 @@ $(document).ready(function() {
     }
 
     initSelectAndDate();
-
 
     function getSchedules() {
 
@@ -91,7 +87,6 @@ $(document).ready(function() {
             '/hall/all',
             function (res) {
                 halls = res.content;
-
                 hallId = halls[0].id;
                 halls.forEach(function (hall) {
                     $('#hall-select').append("<option value="+ hall.id +">"+hall.name+"</option>");

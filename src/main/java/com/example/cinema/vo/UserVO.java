@@ -10,21 +10,17 @@ public class UserVO {
     private Integer id;
     private String username;
     private String password;
-
+    private double totalPurchase;
     private int power;
     private String name;
-
 
     public UserVO(User user){
         this.id = user.getId();
         this.username = user.getUsername();
         this.password = user.getPassword();
-
-
+        this.totalPurchase=user.getTotalPurchase();
         this.power=user.getPower();
         this.name=user.getName();
-
-
     }
 
     public Integer getId() {
@@ -51,8 +47,6 @@ public class UserVO {
         this.password = password;
     }
 
-
-
     public int getPower() {
         return power;
     }
@@ -67,6 +61,14 @@ public class UserVO {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public double getTotalPurchase() {
+        return totalPurchase;
+    }
+
+    public void setTotalPurchase(double totalPurchase) {
+        this.totalPurchase = totalPurchase;
     }
 
 }

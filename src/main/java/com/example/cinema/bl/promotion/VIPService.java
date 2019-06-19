@@ -14,8 +14,6 @@ public interface VIPService {
 
     ResponseVO addVIPCard(VIPCardForm vipCardForm);
 
-
-
     ResponseVO getCardById(int id);
 
     ResponseVO getVIPInfo();

@@ -81,9 +81,7 @@ CREATE TABLE `coupon` (
   `name` varchar(45) DEFAULT NULL,
   `target_amount` float DEFAULT NULL,
   `discount_amount` float DEFAULT NULL,
-
   `least_purchase` float DEFAULT NULL,
-
   `start_time` timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP,
   `end_time` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -96,9 +94,7 @@ CREATE TABLE `coupon` (
 
 LOCK TABLES `coupon` WRITE;
 /*!40000 ALTER TABLE `coupon` DISABLE KEYS */;
-
 INSERT INTO `coupon` VALUES (1,'测试优惠券','春季电影节',20,5,0,'2019-04-20 17:47:54','2019-04-23 17:47:59'),(5,'测试优惠券','品质联盟',30,4,0,'2019-04-20 21:14:46','2019-04-24 21:14:51'),(6,'春节电影节优惠券','电影节优惠券',50,10,0,'2019-04-20 21:15:11','2019-04-21 21:14:56'),(8,'测试优惠券','123',100,99,0,'2019-04-20 16:00:00','2019-04-26 16:00:00');
-
 /*!40000 ALTER TABLE `coupon` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +144,7 @@ CREATE TABLE `hall` (
 
 LOCK TABLES `hall` WRITE;
 /*!40000 ALTER TABLE `hall` DISABLE KEYS */;
-INSERT INTO `hall` VALUES (1,'1号厅',10,5),(2,'2号厅',12,8);
+INSERT INTO `hall` VALUES (1,'1号厅',10,5,'小'),(2,'2号厅',12,8,'中');
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -254,9 +250,7 @@ CREATE TABLE `ticket` (
   `row_index` int(11) DEFAULT NULL,
   `state` tinyint(4) DEFAULT NULL,
   `id` int(11) NOT NULL AUTO_INCREMENT,
-
   `ticket_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -272,7 +266,6 @@ INSERT INTO `ticket` VALUES (12,50,5,3,2,1,'2019-04-23 13:50:52'),(12,50,5,3,2,2
 UNLOCK TABLES;
 
 --
-
 -- Table structure for table `purchase`
 --
 
@@ -332,7 +325,6 @@ UNLOCK TABLES;
 
 
 --
-
 -- Table structure for table `user`
 --
 
@@ -343,11 +335,9 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-
+  `total_purchase` DOUBLE NOT NULL,
   `power` int(2) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-
-
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id_uindex` (`id`),
   UNIQUE KEY `user_username_uindex` (`username`)
@@ -360,11 +350,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-
-
-INSERT INTO `user` VALUES (1,'testname','123456',2,null),(3,'test','123456',2,null),(5,'test1','123456',2,null),(7,'test121','123456',2,null),(8,'root','123456',1,'刘焱'),(10,'roottt','123123',0,'帅逼'),(12,'zhourui','123456',2,null),(13,'abc123','abc123',2,null),(15,'dd','123',1,'弟弟');
-
-
+INSERT INTO `user` VALUES (1,'testname','123456',0,2,null),(3,'test','123456',0,2,null),(5,'test1','123456',0,2,null),(7,'test121','123456',0,2,null),(8,'root','123456',0,1,'刘焱'),(10,'roottt','123123',0,0,'帅逼'),(12,'zhourui','123456',0,2,null),(13,'abc123','abc123',0,2,null),(15,'dd','123',0,1,'弟弟');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -404,13 +390,10 @@ CREATE TABLE `vip_card` (
   `user_id` int(11) DEFAULT NULL,
   `balance` float DEFAULT NULL,
   `join_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
   `kind` varchar(45) DEFAULT NULL,
   `target_amount` float DEFAULT NULL,
   `discount_amount` float DEFAULT NULL,
   `discount_percent` float DEFAULT NULL,
-
-
   PRIMARY KEY (`id`),
   UNIQUE KEY `vip_card_user_id_uindex` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
@@ -421,17 +404,11 @@ CREATE TABLE `vip_card` (
 --
 
 LOCK TABLES `vip_card` WRITE;
-/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;
-
-INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10,0.95),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10,0.95);
-
-
+/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10,0.95),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10,0.95);
 /*!40000 ALTER TABLE `vip_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
-
-
 -- Table structure for table `vip_kind`
 --
 
@@ -483,8 +460,6 @@ LOCK TABLES `staffs` WRITE;
 INSERT INTO `staffs` VALUES ('root'),('dd');
 /*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
 
 --
 -- Dumping routines for database 'cinema'

@@ -6,16 +6,12 @@ import com.example.cinema.blImpl.management.schedule.ScheduleServiceForBl;
 import com.example.cinema.data.management.MovieMapper;
 import com.example.cinema.data.promotion.ActivityMapper;
 import com.example.cinema.data.promotion.CouponMapper;
-
 import com.example.cinema.data.promotion.VIPCardMapper;
-
-
 import com.example.cinema.data.promotion.RefundMapper;
-
-
-
 import com.example.cinema.data.sales.PurchaseMapper;
-
+import com.example.cinema.data.promotion.RefundMapper;
+import com.example.cinema.data.promotion.VIPCardMapper;
+import com.example.cinema.data.sales.PurchaseMapper;
 import com.example.cinema.data.sales.TicketMapper;
 import com.example.cinema.po.*;
 import com.example.cinema.vo.*;
@@ -23,9 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.sql.Time;
-
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,8 +48,6 @@ public class TicketServiceImpl implements TicketService {
     PurchaseMapper purchaseMapper;
     @Autowired
     RefundMapper refundMapper;
-
-
 
     @Override
     @Transactional
@@ -162,7 +154,6 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-
     public ResponseVO getTicketByUser(int userId) {
         //根据userid来获取该用户买过的tickets
         try{
@@ -276,7 +267,6 @@ public class TicketServiceImpl implements TicketService {
             int userID=ticketMapper.selectTicketById(id.get(0)).getUserId();
             VIPCard vipCard=vipCardMapper.selectCardByUserId(userID);
             int vipCardId=vipCard.getId();
-
             int ticketPrice=(int)vipCard.calculate(total)/id.size();
             if(vipCard.getBalance()>total&&vipCard.getJoinDate().before(nowTime)) {
                 double balance = vipCard.getBalance() - vipCard.calculate( total);
@@ -287,19 +277,11 @@ public class TicketServiceImpl implements TicketService {
             //购买后更改ticket状态
             id.stream().forEach(ticketId->{
                 ticketMapper.updateTicketState(ticketId,1);
-            });
-
-
-
-
-            //购买后更改ticket状态
-            id.stream().forEach(ticketId->{
-                ticketMapper.updateTicketState(ticketId,1);
                 ticketMapper.updateTicketPrice(ticketId,ticketPrice);
+
             });
             //反值
             return ResponseVO.buildSuccess("成功vip购票");
-
 
         }catch (Exception e){
             e.printStackTrace();
@@ -316,13 +298,12 @@ public class TicketServiceImpl implements TicketService {
                 Ticket ticket=ticketMapper.selectTicketById(ticketId);  //根据ticketiId来获取Ticket对象。
                 int scheduleId=ticket.getScheduleId();
                 ScheduleItem scheduleItem=scheduleService.getScheduleItemById(scheduleId);
-
-
                 //ResponseVO vo=new TicketServiceImpl().getBySchedule(scheduleId); //使用该类中的getBySchedule方法，根据排片id获取排片场次的座位信息，查看哪些座位已被锁座
                 //ScheduleWithSeatVO scheduleWithSeatVO=ScheduleWithSeatVO(vo.getContent());  //获取到ScheduleWithSeatVO对象的seats属性，然后将待取消锁座的座位seats[][]设为0即可
                 //int[][] seats=vo.getContent().seats;
                 //Object obj=vo.getContent();
                 //ScheduleWithSeatVO(obj).
+
 
                 //获取该ticket所在影厅的座位情况（seats[][]表明了对应座位是否被锁座，1为被锁座，0为未被锁座）
                 int[][] seats=new int[hallService.getHallById(scheduleItem.getHallId()).getRow()][hallService.getHallById(scheduleItem.getHallId()).getColumn()];
@@ -342,9 +323,6 @@ public class TicketServiceImpl implements TicketService {
         }
 
     }
-
-
-
 
     @Override
     public ResponseVO getByPurchase(int purchaseId){
@@ -379,6 +357,5 @@ public class TicketServiceImpl implements TicketService {
         }
 
     }
-
 
 }

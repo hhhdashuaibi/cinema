@@ -1,14 +1,11 @@
 $(document).ready(function() {
 
-
     if(sessionStorage.getItem('power')>0){
         $("#staffManageModal").hide();
     }
     else {
         $("#staffManageModal").show();
     }
-
-
 
     getScheduleRate();
 
@@ -20,9 +17,7 @@ $(document).ready(function() {
 
     getPolularMovie();
 
-
     getMovieBlockHeight();
-
 
     function getScheduleRate() {
 
@@ -245,10 +240,7 @@ $(document).ready(function() {
         var days=7;
 
         var movieNum=5;
-        getRequest(
-
-            '/statistics/populars/movie?days='+days+'&movieNum='+movieNum,
-
+        getRequest('/statistics/popular/movie?days='+days+'&movieNum='+movieNum,
             function (res) {
                 var data = res.content || [];
                 var tableData = data.map(function (item) {
@@ -323,6 +315,5 @@ $(document).ready(function() {
                 alert(JSON.stringify(error));
             });
     }
-
 
 });

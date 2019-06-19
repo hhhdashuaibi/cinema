@@ -7,7 +7,6 @@
     <select id="selectHallById" resultMap="Hall">
         select * from hall where id = #{hallId}
     </select>
-
     <select id="addHall">
         insert into hall (name,`column`,row,type) values (#{name},#{column},#{row},#{type})
     </select>
@@ -17,7 +16,6 @@
     <select id="deleteHall">
         delete from hall where id=#{id}
     </select>
-
 
     <resultMap id="Hall" type="com.example.cinema.po.Hall">
     </resultMap>

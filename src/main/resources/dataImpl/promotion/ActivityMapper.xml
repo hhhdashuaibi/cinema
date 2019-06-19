@@ -45,6 +45,10 @@
 
     </select>
 
+    <select id="selectAllActivities" resultMap="Activity">
+        select * from activity
+    </select>
+
     <select id="selectActivitiesByMovie" resultMap="Activity">
         select
         *

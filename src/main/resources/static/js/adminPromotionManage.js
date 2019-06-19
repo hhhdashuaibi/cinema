@@ -1,13 +1,11 @@
 $(document).ready(function() {
 
-
     if(sessionStorage.getItem('power')>0){
         $("#staffManageModal").hide();
     }
     else {
         $("#staffManageModal").show();
     }
-
 
     getAllMovies();
 
@@ -93,9 +91,7 @@ $(document).ready(function() {
                name: $("#coupon-description-input").val(),
                targetAmount: $("#coupon-target-input").val(),
                discountAmount: $("#coupon-discount-input").val(),
-
                leastPurchase:$("#coupon-least-purchase-input").val(),
-
                startTime: $("#activity-start-date-input").val(),
                endTime: $("#activity-end-date-input").val()
            }
@@ -108,6 +104,24 @@ $(document).ready(function() {
                 if(res.success){
                     getActivities();
                     $("#activityModal").modal('hide');
+                    getRequest(
+                        '/activity/getCouponId',
+                        function(res){
+                            postRequest(
+                                '/coupon/addUsers?couponId='+res.content+'&targetPurchase='+$("#coupon-least-purchase-input").val(),
+                                null,
+                                function (){
+                                    alert("用户得到优惠券");
+                                },
+                                function (error) {
+                                    alert(error);
+                                }
+                            );
+                        },
+                        function (error) {
+                            alert(error)
+                        }
+                    )
                 } else {
                     alert(res.message);
                 }
@@ -116,6 +130,7 @@ $(document).ready(function() {
                 alert(JSON.stringify(error));
             }
         );
+
     });
 
     //ES6新api 不重复集合 Set

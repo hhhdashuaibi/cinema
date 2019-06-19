@@ -37,7 +37,6 @@ public class Ticket {
      */
     private int state;
 
-
     private Timestamp ticketTime;
 
     public Timestamp getTime() {
@@ -46,7 +45,6 @@ public class Ticket {
 
     public void setTime(Timestamp time) {
         this.ticketTime = time;
-
     }
 
     public Ticket() {
@@ -75,9 +73,7 @@ public class Ticket {
                 stateString = "未完成";
         }
         vo.setState(stateString);
-
         vo.setTime(ticketTime);
-
         return vo;
 
     }

@@ -6,14 +6,13 @@ import com.example.cinema.vo.UserForm;
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.UserVO;
 import org.springframework.beans.factory.annotation.Autowired;
-
-
 import org.springframework.web.bind.annotation.GetMapping;
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.apache.ibatis.annotations.Param;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -46,15 +45,24 @@ public class AccountController {
         return "index";
     }
 
-
     @GetMapping("/getStaff")
     public ResponseVO getStaff(){
         return  accountService.getStaff();
 
     }
+
     @PostMapping("/updateStaff")
     public ResponseVO updatePowerAndName(@RequestBody UserForm userForm){
         return accountService.updatePowerAndName(userForm);
     }
 
+    @PostMapping("/updateTotalPurchase")
+    public ResponseVO updateTotalPurchase(@RequestParam double purchaseAmount, @RequestParam int userId){
+        return accountService.updateTotalPurchase(purchaseAmount,userId);
+    }
+
+    @GetMapping("/getQualifiedUser")
+    public ResponseVO getQualifiedUser(@RequestParam double targetPurchase){
+        return accountService.getQualifiedUsers(targetPurchase);
+    }
 }
