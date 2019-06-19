@@ -1,7 +1,5 @@
 package com.example.cinema.po;
 
-
-
 import com.example.cinema.bl.promotion.VIPKindService;
 import com.example.cinema.blImpl.promotion.VIPKindServiceImpl;
 import com.example.cinema.data.promotion.VIPKindMapper;
@@ -17,7 +15,6 @@ import java.sql.Timestamp;
 /**
  * Created by liying on 2019/4/14.
  */
-
 @Component
 public class VIPCard {
     @Autowired
@@ -61,7 +58,6 @@ public class VIPCard {
      * 办卡日期
      */
     private Timestamp joinDate;
-
     /*
      * 折扣
      * */
@@ -90,7 +86,6 @@ public class VIPCard {
         }catch (Exception e) {
             e.printStackTrace();
         }*/
-
     }
 
 

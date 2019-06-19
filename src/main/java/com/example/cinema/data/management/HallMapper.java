@@ -24,7 +24,6 @@ public interface HallMapper {
      */
     Hall selectHallById(@Param("hallId") int hallId);
 
-
     /**
      * 影厅信息录入，增加影厅
      * @param name
@@ -52,5 +51,4 @@ public interface HallMapper {
      * @return
      */
     void deleteHall(int id);
-
 }

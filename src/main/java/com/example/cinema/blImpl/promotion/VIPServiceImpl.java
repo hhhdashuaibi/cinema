@@ -1,6 +1,7 @@
 package com.example.cinema.blImpl.promotion;
 
 import com.example.cinema.bl.promotion.VIPService;
+import com.example.cinema.data.promotion.VIPCardMapper;
 import com.example.cinema.data.management.ScheduleMapper;
 import com.example.cinema.data.promotion.VIPCardMapper;
 import com.example.cinema.data.sales.TicketMapper;
@@ -36,7 +37,6 @@ public class VIPServiceImpl implements VIPService {
         vipCard.setKind(vipCardForm.getKind());
         vipCard.setTargetAmount(vipCardForm.getTargetAmount());
         vipCard.setDiscountAmount(vipCardForm.getDiscountAmount());
-
         try {
             int id = vipCardMapper.insertOneCard(vipCard);
             return ResponseVO.buildSuccess(vipCardMapper.selectCardById(id));
@@ -97,6 +97,27 @@ public class VIPServiceImpl implements VIPService {
             return ResponseVO.buildFailure("失败");
         }
     }
+    @Override
+    public ResponseVO updateVIPCard(String kind,double targetAmount,double discountAmount,String newkind) {
+        try {
+            vipCardMapper.updateVIPCard(kind, targetAmount, discountAmount, newkind);
+            return ResponseVO.buildSuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    public ResponseVO updateVIPCardByUserId(String kind,double targetAmount,double discountAmount,int userId){
+        try {
+            vipCardMapper.updateVIPCardByUserId(kind,targetAmount,discountAmount,userId);
+            return ResponseVO.buildSuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
 
     @Override
     public ResponseVO refundCard(VIPRefundForm vipRefundForm) {
@@ -115,18 +136,6 @@ public class VIPServiceImpl implements VIPService {
             return ResponseVO.buildFailure("失败");
         }
     }
-
-    @Override
-    public ResponseVO updateVIPCard(String kind,double targetAmount,double discountAmount,double discountPercent){
-        try {
-            vipCardMapper.updateVIPCard(kind,targetAmount,discountAmount,discountPercent);
-            return ResponseVO.buildSuccess();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseVO.buildFailure("失败");
-        }
-    }
-
 
 
 }

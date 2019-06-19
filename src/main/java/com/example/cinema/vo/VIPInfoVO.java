@@ -11,7 +11,6 @@ public class VIPInfoVO {
 
     double price;
 
-
     int duration;
 
     String name;

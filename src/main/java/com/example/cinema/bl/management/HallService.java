@@ -13,7 +13,6 @@ public interface HallService {
      */
     ResponseVO searchAllHall();
 
-
     /**
      * 影厅信息录入，增加影厅
      * @param name
@@ -37,6 +36,5 @@ public interface HallService {
      * @return
      */
     ResponseVO deleteHall(int id);
-
 
 }

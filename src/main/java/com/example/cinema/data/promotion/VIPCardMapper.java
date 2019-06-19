@@ -18,6 +18,7 @@ public interface VIPCardMapper {
 
     VIPCard selectCardByUserId(int userId);
 
-    void updateVIPCard(@Param("kind") String kind,@Param("targetAmount") double targetAmount,@Param("discountAmount") double discountAmount,@Param("discountPercent") double diacountPercent);
+    void updateVIPCard(@Param("kind") String kind,@Param("targetAmount") double targetAmount,@Param("discountAmount") double discountAmount,@Param("newkind") String newkind);
 
+    void updateVIPCardByUserId(@Param("kind") String kind,@Param("targetAmount") double targetAmount,@Param("discountAmount") double discountAmount,@Param("userId") int userId);
 }

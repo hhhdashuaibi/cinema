@@ -49,5 +49,4 @@ public class UserForm {
     public void setName(String name) {
         this.name = name;
     }
-
 }

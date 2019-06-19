@@ -5,7 +5,6 @@ import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.TicketForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.sql.Timestamp;
 
 import java.util.List;

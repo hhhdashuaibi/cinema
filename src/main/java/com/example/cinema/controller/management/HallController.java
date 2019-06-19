@@ -36,5 +36,4 @@ public class HallController {
     public ResponseVO deleteHall(@RequestParam int id){
         return hallService.deleteHall(id);
     }
-
 }

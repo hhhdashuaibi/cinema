@@ -11,7 +11,6 @@ import com.example.cinema.vo.VIPRefundForm;
 
 public interface VIPService {
 
-
     ResponseVO addVIPCard(VIPCardForm vipCardForm);
 
     ResponseVO getCardById(int id);
@@ -22,8 +21,10 @@ public interface VIPService {
 
     ResponseVO getCardByUserId(int userId);
 
-    ResponseVO refundCard(VIPRefundForm vipRefundForm);
+    ResponseVO updateVIPCard(String kind,double targetAmount,double discountAmount,String newkind);
 
-    ResponseVO updateVIPCard(String kind, double targetAmount, double discountAmount, double discountPercent);
+    ResponseVO updateVIPCardByUserId(String kind,double targetAmount,double discountAmount,int userId);
+
+    ResponseVO refundCard(VIPRefundForm vipRefundForm);
 
 }

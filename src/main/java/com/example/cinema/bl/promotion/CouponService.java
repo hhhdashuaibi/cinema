@@ -15,5 +15,4 @@ public interface CouponService {
     ResponseVO issueCoupon(int couponId,int userId);
 
     ResponseVO issueCoupons(int couponId, double targetPurchase);
-
 }

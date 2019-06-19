@@ -36,6 +36,16 @@ public class VIPKindForm {
      * */
     public double discountPercent;
 
+    public String newname;
+
+    public String getNewname() {
+        return newname;
+    }
+
+    public void setNewname(String newname) {
+        this.newname = newname;
+    }
+
     public double getPrice() {
         return price;
     }

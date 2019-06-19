@@ -65,4 +65,5 @@ public class AccountController {
     public ResponseVO getQualifiedUser(@RequestParam double targetPurchase){
         return accountService.getQualifiedUsers(targetPurchase);
     }
+
 }

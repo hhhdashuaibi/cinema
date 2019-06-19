@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-
 /**
  * @author huwen
  * @date 2019/3/23
@@ -16,12 +15,11 @@ public interface AccountMapper {
 
     /**
      * 创建一个新的账号
-     *
      * @param username
      * @param password
      * @return
      */
-    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("power") int power);
+    public int createNewAccount(@Param("username") String username, @Param("password") String password, @Param("power") int power,@Param("totalPurchase") double totalPurchase);
 
     /**
      * 根据用户名查找账号

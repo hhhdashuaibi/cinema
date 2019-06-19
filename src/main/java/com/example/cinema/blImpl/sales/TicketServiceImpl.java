@@ -238,7 +238,6 @@ public class TicketServiceImpl implements TicketService {
             double fare=scheduleItem.getFare();
             double total=fare*id.size();
 
-
             //校验优惠券，得到使用优惠券之后的总金额，删除已使用优惠券
             if(couponId!=0) {
                 Coupon coupon = couponMapper.selectById(couponId);//通过优惠券id获得优惠券对象
@@ -251,10 +250,6 @@ public class TicketServiceImpl implements TicketService {
                 }
                 couponMapper.deleteCouponUser(couponId, userId);
             }
-
-
-
-
 
             //得到当前电影的活动列表以及与电影无关的活动，验证活动时间并赠送优惠券
             int movieId=scheduleItem.getMovieId();//通过电影票排片信息得到电影票的电影id
@@ -277,7 +272,6 @@ public class TicketServiceImpl implements TicketService {
                 vipCardMapper.updateCardBalance(vipCardId,balance);
             }
 
-
             //购买后更改ticket状态
             id.stream().forEach(ticketId->{
                 ticketMapper.updateTicketState(ticketId,1);
@@ -285,7 +279,6 @@ public class TicketServiceImpl implements TicketService {
             });
             //反值
             return ResponseVO.buildSuccess("成功vip购票");
-
         }catch (Exception e){
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");  //返回ResponseVO对象，调用此completeTicket(List<Integer> id, int couponId)方法失败
@@ -306,8 +299,6 @@ public class TicketServiceImpl implements TicketService {
                 //int[][] seats=vo.getContent().seats;
                 //Object obj=vo.getContent();
                 //ScheduleWithSeatVO(obj).
-
-
                 //获取该ticket所在影厅的座位情况（seats[][]表明了对应座位是否被锁座，1为被锁座，0为未被锁座）
                 int[][] seats=new int[hallService.getHallById(scheduleItem.getHallId()).getRow()][hallService.getHallById(scheduleItem.getHallId()).getColumn()];
                 List<Ticket> tickets = ticketMapper.selectTicketsBySchedule(scheduleId);

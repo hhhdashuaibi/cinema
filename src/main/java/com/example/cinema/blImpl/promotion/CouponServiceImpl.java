@@ -21,10 +21,8 @@ public class CouponServiceImpl implements CouponService {
 
     @Autowired
     CouponMapper couponMapper;
-
     @Autowired
     AccountMapper accountMapper;
-
 
     @Override
     public ResponseVO getCouponsByUser(int userId) {
@@ -81,5 +79,4 @@ public class CouponServiceImpl implements CouponService {
         }
 
     }
-
 }

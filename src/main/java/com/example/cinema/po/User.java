@@ -1,6 +1,5 @@
 package com.example.cinema.po;
 
-
 import com.example.cinema.vo.UserVO;
 import com.example.cinema.vo.PurchaseVO;
 import com.example.cinema.data.sales.PurchaseMapper;
@@ -16,7 +15,6 @@ public class User {
     private Integer id;
     private String username;
     private String password;
-
     /*
      * 总消费金额
      * */
@@ -79,5 +77,4 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
-
 }

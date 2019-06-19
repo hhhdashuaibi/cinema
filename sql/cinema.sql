@@ -394,7 +394,6 @@ CREATE TABLE `vip_card` (
   `kind` varchar(45) DEFAULT NULL,
   `target_amount` float DEFAULT NULL,
   `discount_amount` float DEFAULT NULL,
-  `discount_percent` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `vip_card_user_id_uindex` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
@@ -405,7 +404,8 @@ CREATE TABLE `vip_card` (
 --
 
 LOCK TABLES `vip_card` WRITE;
-/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10,0.95),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10,0.95);
+/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;
+INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10);
 /*!40000 ALTER TABLE `vip_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -424,7 +424,6 @@ CREATE TABLE `vip_kind` (
   `target_amount` float DEFAULT NULL,
   `discount_amount` float DEFAULT NULL,
   `price` float DEFAULT NULL,
-  `discount_percent` float DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `vip_kind_name_uindex` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
@@ -436,10 +435,9 @@ CREATE TABLE `vip_kind` (
 
 LOCK TABLES `vip_kind` WRITE;
 /*!40000 ALTER TABLE `vip_kind` DISABLE KEYS */;
-INSERT INTO `vip_kind` VALUES (1,'2019-06-05 00:00:00',30,'黑卡',1000,300,500,0.7),(2,'2019-06-07 18:00:00',60,'金卡',800,200,400,0.8);
+INSERT INTO `vip_kind` VALUES (1,'2019-06-05 00:00:00',30,'黑卡',1000,300,500),(2,'2019-06-07 18:00:00',60,'金卡',800,200,400);
 /*!40000 ALTER TABLE `vip_kind` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 
 DROP TABLE IF EXISTS `refund`;
