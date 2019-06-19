@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+
 import java.util.List;
 
 /**
@@ -58,11 +59,9 @@ public class TicketController {
         return ticketService.cancelTicket(ticketId);
     }
 
-
     @PostMapping("/delete")
     public ResponseVO deleteTicket(@RequestParam int ticketId){
         return ticketService.deleteTicket(ticketId);
     }
-
 
 }

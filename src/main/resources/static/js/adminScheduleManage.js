@@ -12,8 +12,6 @@ $(document).ready(function() {
     var hallId,
         scheduleDate = formatDate(new Date()),
         schedules = [];
-
-
     if(sessionStorage.getItem('power')>0){
         $("#staffManageModal").hide();
     }

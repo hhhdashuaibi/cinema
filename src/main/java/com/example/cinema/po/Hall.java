@@ -9,6 +9,15 @@ public class Hall {
     private String name;
     private Integer row;
     private Integer column;
+    private String type;
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
 
     public Integer getId() {
         return id;

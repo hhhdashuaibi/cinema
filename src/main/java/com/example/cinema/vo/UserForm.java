@@ -14,7 +14,6 @@ public class UserForm {
      */
     private String password;
 
-
     private int power;
 
     private String name;
@@ -26,7 +25,6 @@ public class UserForm {
     public void setPower(int power) {
         this.power = power;
     }
-
 
     public String getUsername() {
         return username;
@@ -43,7 +41,6 @@ public class UserForm {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
     public String getName() {
         return name;

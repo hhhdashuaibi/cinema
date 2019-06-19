@@ -133,6 +133,7 @@ CREATE TABLE `hall` (
   `name` varchar(255) DEFAULT NULL,
   `column` int(11) DEFAULT NULL,
   `row` int(11) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -143,7 +144,7 @@ CREATE TABLE `hall` (
 
 LOCK TABLES `hall` WRITE;
 /*!40000 ALTER TABLE `hall` DISABLE KEYS */;
-INSERT INTO `hall` VALUES (1,'1号厅',10,5),(2,'2号厅',12,8);
+INSERT INTO `hall` VALUES (1,'1号厅',10,5,'小'),(2,'2号厅',12,8,'中');
 /*!40000 ALTER TABLE `hall` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -338,7 +339,6 @@ CREATE TABLE `user` (
   `total_purchase` DOUBLE NOT NULL,
   `power` int(2) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_id_uindex` (`id`),
   UNIQUE KEY `user_username_uindex` (`username`)
@@ -395,7 +395,6 @@ CREATE TABLE `vip_card` (
   `target_amount` float DEFAULT NULL,
   `discount_amount` float DEFAULT NULL,
   `discount_percent` float DEFAULT NULL,
-
   PRIMARY KEY (`id`),
   UNIQUE KEY `vip_card_user_id_uindex` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
@@ -406,14 +405,11 @@ CREATE TABLE `vip_card` (
 --
 
 LOCK TABLES `vip_card` WRITE;
-/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;
-INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10,0.95),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10,0.95);
-
+/*!40000 ALTER TABLE `vip_card` DISABLE KEYS */;INSERT INTO `vip_card` VALUES (1,15,375,'2019-04-21 13:54:38','黑铁',100,10,0.95),(2,12,660,'2019-04-17 18:47:42','黑铁',100,10,0.95);
 /*!40000 ALTER TABLE `vip_card` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
-
 -- Table structure for table `vip_kind`
 --
 
@@ -494,7 +490,6 @@ LOCK TABLES `staffs` WRITE;
 INSERT INTO `staffs` VALUES ('root'),('dd');
 /*!40000 ALTER TABLE `staffs` ENABLE KEYS */;
 UNLOCK TABLES;
-
 
 --
 -- Dumping routines for database 'cinema'

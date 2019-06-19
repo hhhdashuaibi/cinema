@@ -5,7 +5,6 @@ $(document).ready(function () {
     function getMovieList() {
         getRequest(
             '/ticket/get/show/' + sessionStorage.getItem('id'),
-
             function (res) {
                 renderTicketList(res.content);
             },
@@ -145,7 +144,6 @@ $(document).ready(function () {
                 alert(error)
             }
         )
-
 
     }
 

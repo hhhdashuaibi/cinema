@@ -23,4 +23,34 @@ public interface HallMapper {
      * @return
      */
     Hall selectHallById(@Param("hallId") int hallId);
+
+
+    /**
+     * 影厅信息录入，增加影厅
+     * @param name
+     * @param type
+     * @param row
+     * @param column
+     * @return
+     */
+    void addHall(@Param("name") String name,@Param("type") String type,@Param("row") int row,@Param("column") int column);
+
+    /**
+     * 根据id修改影厅信息
+     * @param id
+     * @param name
+     * @param type
+     * @param row
+     * @param column
+     * @return
+     */
+    void modifyHall(@Param("id") int id,@Param("name") String name,@Param("type") String type,@Param("row") int row,@Param("column") int column);
+
+    /**
+     * 根据id删除该影厅
+     * @param id
+     * @return
+     */
+    void deleteHall(int id);
+
 }

@@ -4,7 +4,6 @@ spring:
      username: root
      password: root
 
-
      driver-class-name: com.mysql.cj.jdbc.Driver
      max-active: 200
      max-idle: 20

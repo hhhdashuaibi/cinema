@@ -95,4 +95,5 @@ public class ViewController {
     public String getUserPurchaseRecord() {
         return "userPurchaseRecord";
     }
+
 }

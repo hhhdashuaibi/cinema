@@ -36,6 +36,7 @@ public class VIPServiceImpl implements VIPService {
         vipCard.setKind(vipCardForm.getKind());
         vipCard.setTargetAmount(vipCardForm.getTargetAmount());
         vipCard.setDiscountAmount(vipCardForm.getDiscountAmount());
+
         try {
             int id = vipCardMapper.insertOneCard(vipCard);
             return ResponseVO.buildSuccess(vipCardMapper.selectCardById(id));
@@ -58,12 +59,10 @@ public class VIPServiceImpl implements VIPService {
     @Override
     public ResponseVO getVIPInfo() {
         VIPInfoVO vipInfoVO = new VIPInfoVO();
-
 //        vipInfoVO.setDescription(VIPCard.description);
 //        vipInfoVO.setPrice(VIPCard.price);
 //        vipInfoVO.setDuration(VIPCard.duration);
 //        vipInfoVO.setName(VIPCard.kind);
-
         return ResponseVO.buildSuccess(vipInfoVO);
     }
 

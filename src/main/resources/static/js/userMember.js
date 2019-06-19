@@ -1,5 +1,4 @@
 $(document).ready(function () {
-
     getVIP();
     getCoupon();
     getRechargeList();
@@ -7,14 +6,12 @@ $(document).ready(function () {
 
 var isBuyState = true;
 var vipCardId;
-
 var vipKind;
 var targetAmount;
 var discountAmount;
 var nowTime =Date.parse(new Date());
 function getVIP() {
     console.log('mmp');
-
     getRequest(
         '/vip/' + sessionStorage.getItem('id') + '/get',
         function (res) {
@@ -41,8 +38,6 @@ function getVIP() {
         function (error) {
             alert(error);
         });
-
-
 }
 function getAllVipKinds() {
     getRequest(
@@ -256,4 +251,3 @@ function getRechargeItem(payMoney) {
         payAmount:payMoney,
     }
 }
-

@@ -11,7 +11,6 @@ public class UserVO {
     private String username;
     private String password;
     private double totalPurchase;
-
     private int power;
     private String name;
 

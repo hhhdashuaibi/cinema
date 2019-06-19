@@ -1,6 +1,5 @@
 package com.example.cinema.controller.promotion;
 
-
 import com.example.cinema.bl.promotion.VIPKindService;
 import com.example.cinema.bl.promotion.VIPService;
 import com.example.cinema.po.VIPCard;
@@ -25,8 +24,8 @@ public class VIPCardController {
     @PostMapping("/add")
     public ResponseVO addVIP(@RequestBody VIPCardForm vipCardForm){
         return vipService.addVIPCard(vipCardForm);
-
     }
+
     @GetMapping("{userId}/get")
     public ResponseVO getVIP(@PathVariable int userId){
         return vipService.getCardByUserId(userId);
@@ -62,8 +61,5 @@ public class VIPCardController {
     public ResponseVO getVIPKinds(){return vipKindService.getVIPKinds();}
     @PostMapping("/updateVIPKind")
     public ResponseVO updateVIPKind(@RequestBody VIPKindForm vipKindForm){return vipKindService.updateVIPKind(vipKindForm);}
-
-
-
 
 }

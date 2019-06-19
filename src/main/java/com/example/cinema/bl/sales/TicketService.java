@@ -2,8 +2,8 @@ package com.example.cinema.bl.sales;
 
 import com.example.cinema.vo.ResponseVO;
 import com.example.cinema.vo.TicketForm;
-
 import java.sql.Timestamp;
+
 import java.util.List;
 
 
@@ -20,7 +20,7 @@ public interface TicketService {
     ResponseVO addTicket(TicketForm ticketForm);
 
     /**
-     * 完成购票【不使用会员卡】流程包括校验优惠券和根据优惠活动赠送优惠券
+     * TODO:完成购票【不使用会员卡】流程包括校验优惠券和根据优惠活动赠送优惠券
      *
      * @param id
      * @param couponId
@@ -37,17 +37,14 @@ public interface TicketService {
     ResponseVO getBySchedule(int scheduleId);
 
     /**
-     * 获得用户买过的票
+     * TODO:获得用户买过的票
      *
      * @param userId
      * @return
      */
     ResponseVO getTicketByUser(int userId);
 
-
     ResponseVO getRefundTicketByUser(int userId);
-
-
     /**
      * 完成购票【使用会员卡】流程包括会员卡扣费、校验优惠券和根据优惠活动赠送优惠券
      *
@@ -58,7 +55,7 @@ public interface TicketService {
     ResponseVO completeByVIPCard(List<Integer> id, int couponId);
 
     /**
-     * 取消锁座（只有状态是"锁定中"的可以取消）
+     * TODO:取消锁座（只有状态是"锁定中"的可以取消）
      *
      * @param id
      * @return
@@ -81,6 +78,5 @@ public interface TicketService {
      * @return
      */
     ResponseVO deleteTicket(int id);
-
 
 }

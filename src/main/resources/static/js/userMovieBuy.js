@@ -10,7 +10,6 @@ var payTime=new Date().getTime();
 $(document).ready(function () {
     scheduleId = parseInt(window.location.href.split('?')[1].split('&')[1].split('=')[1]);
 
-
     getInfo();
 
     function getInfo() {
@@ -280,6 +279,7 @@ function postPayRequest() {
     $('#order-state').css("display", "none");
     $('#success-state').css("display", "");
     $('#buyModal').modal('hide');
+
     payTime=Math.round(new Date().getTime()/1000);
     if (useVIP) {
         postRequest(
@@ -337,7 +337,6 @@ function postPayRequest() {
     }
 
 }
-
 function getPurchaseItem(payMethod,purchaseState){
     return{
         userId:sessionStorage.getItem("id"),

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
-
 import java.sql.Timestamp;
 
 /**
@@ -42,7 +41,6 @@ public class VIPCard {
     public String kind;
 
     public int duration;
-
 
     /**
      * 用户id
@@ -127,10 +125,6 @@ public class VIPCard {
     public void setJoinDate(Timestamp joinDate) {
         this.joinDate = joinDate;
     }
-
-
-
-
 
     public String getKind() {
         return kind;

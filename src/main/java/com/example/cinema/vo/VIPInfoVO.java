@@ -32,7 +32,6 @@ public class VIPInfoVO {
         this.duration = duration;
     }
 
-
     public String getDescription() {
         return description;
     }

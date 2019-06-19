@@ -6,6 +6,7 @@ $(document).ready(function(){
     else {
         $("#staffManageModal").show();
     }
+
     getMovieList();
 
     $("#movie-form-btn").click(function () {

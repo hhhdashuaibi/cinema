@@ -7,7 +7,6 @@ $(document).ready(function() {
         $("#staffManageModal").show();
     }
 
-
     getScheduleRate();
 
     getBoxOffice();
@@ -17,6 +16,8 @@ $(document).ready(function() {
     getPlacingRate();
 
     getPolularMovie();
+
+    getMovieBlockHeight();
 
     function getScheduleRate() {
 
@@ -239,8 +240,7 @@ $(document).ready(function() {
         var days=7;
 
         var movieNum=5;
-        getRequest(
-            '/statistics/popular/movie?days='+days+'&movieNum='+movieNum,
+        getRequest('/statistics/popular/movie?days='+days+'&movieNum='+movieNum,
             function (res) {
                 var data = res.content || [];
                 var tableData = data.map(function (item) {
@@ -274,4 +274,46 @@ $(document).ready(function() {
                 alert(JSON.stringify(error));
             });
     }
+
+    function getMovieBlockHeight() {
+        // todo
+
+
+        getRequest(
+            '/statistics/MovieBlockHeight',
+            function (res) {
+                console.log(res);
+                var data = res.content || [];
+                var tableData = data.map(function (item) {
+                    return item.blockHeight;
+                });
+                var nameList = data.map(function (item) {
+                    return ('上架电影区块');
+                });
+                var option = {
+                    title : {
+                        text: '电影链区块的高度',
+                        subtext: "高度",
+                        x:'center'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: nameList
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        data: tableData,
+                        type: 'bar'
+                    }]
+                };
+                var scheduleRateChart = echarts.init($("#block-height-container")[0]);
+                scheduleRateChart.setOption(option);
+            },
+            function (error) {
+                alert(JSON.stringify(error));
+            });
+    }
+
 });

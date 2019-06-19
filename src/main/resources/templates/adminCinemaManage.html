@@ -25,21 +25,24 @@
             <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
             <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
             <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
-            <li role="presentation"><a href="/admin/movie/refund"><i class="icon-gift"></i> 退票管理 </a></li>
             <li role="presentation" class="active"><a href="#"><i class="icon-cogs"></i> 影院管理</a></li>
             <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
-            <li role="presentation"><a href="/admin/vipkind/issue"><i class="icon-gift"></i> 会员卡发布</a></li>
-            <li role="presentation"  id="staffManageModal"><a href="/admin/staff/manage"><i class="icon-gift"></i>员工管理</a></li>
         </ul>
     </div>
     <div class="content-container">
-        <div class="content-item">
+        <div class="content-item" >
             <span class="title gray-text">常规设置</span>
-            <div class="content-card card">
-                <span class="">用户可见排片日期：</span><span id="can-see-num"></span>
-                <a style="margin-left: 20px;" class="primary-text" id="canview-modify-btn">修改</a>
-                <input type="number" class="form-control" id="canview-set-input" style="display: none;width: 200px;">
-                <a style="display: none" class="primary-text" id="canview-confirm-btn">确认</a>
+            <div class="content-card card" style="display: flex;justify-content: space-between">
+                <div>
+                    <span class="">用户可见排片日期：</span><span id="can-see-num"></span>
+                    <a style="margin-left: 20px;" class="primary-text" id="canview-modify-btn">修改</a>
+                    <input type="number" class="form-control" id="canview-set-input" style="display: none;width: 200px;">
+                    <a style="display: none" class="primary-text" id="canview-confirm-btn">确认</a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#scheduleModal">新增影厅</button>
+                    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#scheduleModal2" style="margin-left: 15px">修改影厅</button>
+                </div>
             </div>
         </div>
         <div class="content-item">
@@ -49,5 +52,84 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">新增影厅</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" ><span class="error-text">*</span>影厅名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="schedule-price-input" placeholder="请填写影厅名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-hall-input"><span class="error-text">*</span>影厅大小</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-hall-input" class="form-control">
+                                <option value=1>小(10*5)</option>
+                                <option value=1>中(12*8)</option>
+                                <option value=1>大(14*10)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="schedule-form-btn">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="scheduleModal2" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">修改影厅</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" ><span class="error-text">*</span>原先影厅</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-hall-select" class="form-control">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" ><span class="error-text">*</span>影厅名称</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="newHallName" placeholder="请填写新的影厅名称">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="schedule-hall-input2"><span class="error-text">*</span>影厅大小</label>
+                        <div class="col-sm-10">
+                            <select id="schedule-hall-input2" class="form-control">
+                                <option value=1>小(10*5)</option>
+                                <option value=1>中(12*8)</option>
+                                <option value=1>大(14*10)</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="schedule-edit-remove-btn">删除</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="schedule-form-btn2">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>

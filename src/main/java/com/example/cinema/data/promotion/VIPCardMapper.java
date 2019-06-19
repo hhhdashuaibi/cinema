@@ -20,5 +20,4 @@ public interface VIPCardMapper {
 
     void updateVIPCard(@Param("kind") String kind,@Param("targetAmount") double targetAmount,@Param("discountAmount") double discountAmount,@Param("discountPercent") double diacountPercent);
 
-
 }

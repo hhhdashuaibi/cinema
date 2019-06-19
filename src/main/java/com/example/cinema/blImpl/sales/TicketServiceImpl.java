@@ -6,10 +6,10 @@ import com.example.cinema.blImpl.management.schedule.ScheduleServiceForBl;
 import com.example.cinema.data.management.MovieMapper;
 import com.example.cinema.data.promotion.ActivityMapper;
 import com.example.cinema.data.promotion.CouponMapper;
-
+import com.example.cinema.data.promotion.VIPCardMapper;
 import com.example.cinema.data.promotion.RefundMapper;
-
-
+import com.example.cinema.data.sales.PurchaseMapper;
+import com.example.cinema.data.promotion.RefundMapper;
 import com.example.cinema.data.promotion.VIPCardMapper;
 import com.example.cinema.data.sales.PurchaseMapper;
 import com.example.cinema.data.sales.TicketMapper;
@@ -36,17 +36,18 @@ public class TicketServiceImpl implements TicketService {
     ScheduleServiceForBl scheduleService;
     @Autowired
     HallServiceForBl hallService;
+
     @Autowired
     CouponMapper couponMapper;
     @Autowired
     ActivityMapper activityMapper;
     @Autowired
     VIPCardMapper vipCardMapper;
+
     @Autowired
     PurchaseMapper purchaseMapper;
     @Autowired
     RefundMapper refundMapper;
-
 
     @Override
     @Transactional
@@ -173,7 +174,6 @@ public class TicketServiceImpl implements TicketService {
     }
 
     @Override
-
     public ResponseVO getRefundTicketByUser(int userId){
         try {
             List<Refund> refunds=refundMapper.SelectRefunds();
@@ -301,6 +301,12 @@ public class TicketServiceImpl implements TicketService {
                 Ticket ticket=ticketMapper.selectTicketById(ticketId);  //根据ticketiId来获取Ticket对象。
                 int scheduleId=ticket.getScheduleId();
                 ScheduleItem scheduleItem=scheduleService.getScheduleItemById(scheduleId);
+                //ResponseVO vo=new TicketServiceImpl().getBySchedule(scheduleId); //使用该类中的getBySchedule方法，根据排片id获取排片场次的座位信息，查看哪些座位已被锁座
+                //ScheduleWithSeatVO scheduleWithSeatVO=ScheduleWithSeatVO(vo.getContent());  //获取到ScheduleWithSeatVO对象的seats属性，然后将待取消锁座的座位seats[][]设为0即可
+                //int[][] seats=vo.getContent().seats;
+                //Object obj=vo.getContent();
+                //ScheduleWithSeatVO(obj).
+
 
                 //获取该ticket所在影厅的座位情况（seats[][]表明了对应座位是否被锁座，1为被锁座，0为未被锁座）
                 int[][] seats=new int[hallService.getHallById(scheduleItem.getHallId()).getRow()][hallService.getHallById(scheduleItem.getHallId()).getColumn()];

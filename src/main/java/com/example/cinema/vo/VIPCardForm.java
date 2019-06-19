@@ -15,7 +15,6 @@ public class VIPCardForm {
      */
     private int amount;
 
-
     private double targetAmount;
 
     private double discountAmount;
@@ -27,8 +26,6 @@ public class VIPCardForm {
      * 折扣
      * */
     public double discountPercent;
-
-
 
     public int getVipId() {
         return vipId;
@@ -45,7 +42,6 @@ public class VIPCardForm {
     public void setAmount(int amount) {
         this.amount = amount;
     }
-
 
     public double getTargetAmount() {
         return targetAmount;
@@ -78,6 +74,7 @@ public class VIPCardForm {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     public double getDiscountPercent() {
         return discountPercent;
     }
