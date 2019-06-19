@@ -64,7 +64,6 @@ $(document).ready(function () {
     $('#user-refund-btn').click(function () {
         if ($('#refund-account-input').val() === "123123123" && $('#refund-password-input').val() === "123123") {
             deleteTicket(buttonLabel);
-
         } else {
             alert("银行卡号或密码错误");
         }

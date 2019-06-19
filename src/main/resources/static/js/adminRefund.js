@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+    if(sessionStorage.getItem('power')>0){
+        $("#staffManageModal").hide();
+    }
+    else {
+        $("#staffManageModal").show();
+    }
+
     //ES6新api 不重复集合 Set
     var selectedMovieIds = new Set();
     var selectedMovieNames = new Set();
@@ -131,7 +138,7 @@ $(document).ready(function() {
             form,
             function (res) {
                 if(res.success){
-                    getRefunds();
+                    location.reload();
                     $("#refundModal").modal('hide');
                 } else {
                     alert(res.message);

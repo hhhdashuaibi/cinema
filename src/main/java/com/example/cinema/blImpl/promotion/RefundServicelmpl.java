@@ -54,7 +54,6 @@ public class RefundServicelmpl implements RefundService {
     @Override
     public ResponseVO changeRefund(RefundForm refundForm) {
         try {
-            System.out.println(refundForm.getName());
             Refund refund=refundMapper.SelectByID(Integer.parseInt(refundForm.getName()));
             refund.setStartTime(refundForm.getStartTime());
             refund.setEndTime(refundForm.getEndTime());

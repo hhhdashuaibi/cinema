@@ -206,7 +206,6 @@ public class TicketServiceImpl implements TicketService {
                 int refundState=0;
                 if(tickets.get(i).getState()==1){
                     for(int j=0;j<refunds.size();j++){
-                        System.out.println(ticketWithRefundVO.getPrice());
                         if(ticketWithRefundVO.getTime().before(refunds.get(j).getEndTime())&&ticketWithRefundVO.getTime().after(refunds.get(j).getStartTime())){
                             refundState=1;
                         }

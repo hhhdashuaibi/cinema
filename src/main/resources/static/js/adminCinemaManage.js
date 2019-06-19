@@ -1,4 +1,10 @@
 $(document).ready(function() {
+    if(sessionStorage.getItem('power')>0){
+        $("#staffManageModal").hide();
+    }
+    else {
+        $("#staffManageModal").show();
+    }
 
     var canSeeDate = 0;
 
