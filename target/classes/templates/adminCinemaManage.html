@@ -25,20 +25,28 @@
             <li role="presentation"><a href="/admin/movie/manage"><i class="icon-film"></i> 电影管理</a></li>
             <li role="presentation"><a href="/admin/session/manage"><i class="icon-calendar"></i> 排片管理</a></li>
             <li role="presentation"><a href="/admin/promotion/manage"><i class="icon-gift"></i> 活动管理</a></li>
+
             <li role="presentation" class="active"><a href="#"><i class="icon-cogs"></i> 影院管理</a></li>
             <li role="presentation"><a href="/admin/cinema/statistic"><i class="icon-bar-chart"></i> 影院统计</a></li>
-            <li role="presentation"><a href="/admin/vipkind/issue"><i class="icon-gift"></i> 会员卡发布</a></li>
-            <li role="presentation" id="staffManageModal"><a href="/admin/staff/manage"><i class="icon-gift"></i>员工管理</a></li>
         </ul>
     </div>
     <div class="content-container">
-        <div class="content-item">
+        <div class="content-item" >
             <span class="title gray-text">常规设置</span>
-            <div class="content-card card">
-                <span class="">用户可见排片日期：</span><span id="can-see-num"></span>
-                <a style="margin-left: 20px;" class="primary-text" id="canview-modify-btn">修改</a>
-                <input type="number" class="form-control" id="canview-set-input" style="display: none;width: 200px;">
-                <a style="display: none" class="primary-text" id="canview-confirm-btn">确认</a>
+            <div class="content-card card" style="display: flex;justify-content: space-between">
+                <div>
+                    <span class="">用户可见排片日期：</span><span id="can-see-num"></span>
+                    <a style="margin-left: 20px;" class="primary-text" id="canview-modify-btn">修改</a>
+                    <input type="number" class="form-control" id="canview-set-input" style="display: none;width: 200px;">
+                    <a style="display: none" class="primary-text" id="canview-confirm-btn">确认</a>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#scheduleModal">新增影厅</button>
+                    <button type="button" class="btn btn-primary" data-backdrop="static" data-toggle="modal" data-target="#scheduleModal2" style="margin-left: 15px">修改影厅</button>
+                </div>
+
+
+
             </div>
         </div>
         <div class="content-item">
@@ -48,6 +56,7 @@
         </div>
     </div>
 </div>
+
 
 <div class="modal fade" id="scheduleModal" tabindex="-1" role="dialog" aria-labelledby="movieModalLabel">
     <div class="modal-dialog" role="document">
@@ -126,6 +135,7 @@
         </div>
     </div>
 </div>
+
 
 </body>
 </html>
