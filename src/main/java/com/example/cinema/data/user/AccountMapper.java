@@ -40,4 +40,5 @@ public interface AccountMapper {
     public void updateTotalPurchase(@Param("newTotalPurchase") double newtotalPurchase, @Param("userId") int userId);
 
     public User getTotalPurchase(@Param("userId") int userId);
+
 }

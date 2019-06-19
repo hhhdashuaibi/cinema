@@ -25,6 +25,16 @@ public class TicketWithRefundVO {
      */
     private int rowIndex;
 
+    private int price;
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     /**
      * 订单状态
      */

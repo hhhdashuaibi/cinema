@@ -41,9 +41,10 @@ $(document).ready(function () {
             "<td>"+(ticketInfo.rowIndex+1)+"排"+(ticketInfo.columnIndex+1)+"座" +"</td>"+
             "<td>"+JSON.stringify(schedule.startTime).substring(1,11)+" "+JSON.stringify(schedule.startTime).substring(12,20)+"</td>"+
             "<td>"+JSON.stringify(schedule.endTime).substring(1,11)+" "+JSON.stringify(schedule.endTime).substring(12,20) +"</td>"+
+            "<td>"+ticketInfo.price+"</td>"+
             "<td>"+ticketInfo.state+"</td>";
         if(ticketInfo.refundState){
-            ticketDomStr+="<td><button type='button' class='btn btn-primary' data-backdrop= 'static' data-toggle='modal' data-target='#toRefundModal' data-index="+ticketInfo.id+"><i class='icon-plus-sign'></i>退票</button>";
+            ticketDomStr+="<td><button type='button' class='btn btn-primary' data-backdrop= 'static' data-toggle='modal' data-target='#toRefundModal' data-index="+ticketInfo.id+" data-amount="+ticketInfo.price+"><i class='icon-plus-sign'></i>退票</button>";
         }else {
             ticketDomStr+="<td>无法退票</td>";
         }
@@ -55,8 +56,7 @@ $(document).ready(function () {
     $('#toRefundModal').on('show.bs.modal', function (e) {
         var button = $(e.relatedTarget);
         buttonLabel = parseInt(button.data("index"));
-
-
+        price=parseInt(button.data("amount"));
         $('#refund-rules-details').append("<text>尊敬的用户您好,我们将退还票价</text>");
 
     });
@@ -69,6 +69,46 @@ $(document).ready(function () {
             alert("银行卡号或密码错误");
         }
     })
+
+
+    $('#vip-refund-btn').click(function () {
+        updateVIPcard();
+    })
+
+
+    function updateVIPcard() {
+        getRequest(
+            '/vip/'+ sessionStorage.getItem('id') + '/get',
+            function (res) {
+                if(res.success) {
+                    var VIPCard = res.content;
+                    var form = {
+                        VIPcardID : VIPCard.id,
+                        amount : price
+                    };
+                    postRequest(
+                        '/vip/refund',
+                        form,
+                        function (res) {
+                            if(res.success) {
+
+                                deleteTicket(buttonLabel);
+                            }else {
+                                console.log(res.message);
+                            }
+                        },
+                        function (err) {
+                            console.log(JSON.stringify(err))
+                        }
+                    )
+
+                }else {
+                    console.log(res.message);
+                }
+            },function (err) {
+                console.log(JSON.stringify(err));
+            })
+    }
 
 
     function deleteTicket(ticket) {

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.cinema.data.promotion.RefundMapper">
     <insert id="insertRefund" parameterType="com.example.cinema.po.Refund" useGeneratedKeys="true" keyProperty="id">
-        insert into refund(name,time_limit,start_time,end_time,target_amount)
+        insert into refund(refund_name,time_limit,start_time,end_time,target_amount)
         values(#{name},#{timeLimit},#{startTime},#{endTime},#{targetAmount})
     </insert>
 
@@ -17,6 +17,10 @@
             (#{refundId},#{item})
         </foreach>
     </update>
+
+    <delete id="deleteRefundAndMovie">
+        delete from refund_movie where refund_id=#{refundId}
+    </delete>
 
     <insert id="insertRefundAndMovie">
         insert into refund_movie(refund_id,movie_id) values

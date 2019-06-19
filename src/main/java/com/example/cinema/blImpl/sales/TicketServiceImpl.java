@@ -108,6 +108,7 @@ public class TicketServiceImpl implements TicketService {
                 }
                 couponMapper.deleteCouponUser(couponId, userId);
             }
+            int ticketPrice=(int)total/id.size();
 
             //得到当前电影的活动列表以及与电影无关的活动，验证活动时间并赠送优惠券
             int movieId=scheduleItem.getMovieId();//通过电影票排片信息得到电影票的电影id
@@ -123,6 +124,7 @@ public class TicketServiceImpl implements TicketService {
             //购买后更改ticket状态
             id.stream().forEach(ticketId->{
                 ticketMapper.updateTicketState(ticketId,1);
+                ticketMapper.updateTicketPrice(ticketId,ticketPrice);
             });
 
             return ResponseVO.buildSuccess();//返回ResponseVO对象，调用成功！
@@ -184,6 +186,7 @@ public class TicketServiceImpl implements TicketService {
                 ticketWithRefundVO.setScheduleId(tickets.get(i).getScheduleId());
                 ticketWithRefundVO.setColumnIndex(tickets.get(i).getColumnIndex());
                 ticketWithRefundVO.setRowIndex(tickets.get(i).getRowIndex());
+                ticketWithRefundVO.setPrice(tickets.get(i).getPrice());
                 String stateString;
                 switch (tickets.get(i).getState()) {
                     case 0:
@@ -203,6 +206,7 @@ public class TicketServiceImpl implements TicketService {
                 int refundState=0;
                 if(tickets.get(i).getState()==1){
                     for(int j=0;j<refunds.size();j++){
+                        System.out.println(ticketWithRefundVO.getPrice());
                         if(ticketWithRefundVO.getTime().before(refunds.get(j).getEndTime())&&ticketWithRefundVO.getTime().after(refunds.get(j).getStartTime())){
                             refundState=1;
                         }
@@ -278,7 +282,6 @@ public class TicketServiceImpl implements TicketService {
             id.stream().forEach(ticketId->{
                 ticketMapper.updateTicketState(ticketId,1);
                 ticketMapper.updateTicketPrice(ticketId,ticketPrice);
-
             });
             //反值
             return ResponseVO.buildSuccess("成功vip购票");
