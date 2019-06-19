@@ -106,7 +106,7 @@ function initTopPopular(){
     var days=7;
     var movieNum=5;
     getRequest(
-        '/statistics/populars/movie?days='+days+'&movieNum='+movieNum,
+        '/statistics/popular/movie?days='+days+'&movieNum='+movieNum,
         function (res) {
             var movies=res.content;
             movies.forEach(function (movie) {
