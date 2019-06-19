@@ -48,4 +48,10 @@ public interface StatisticsService {
      * @return
      */
     ResponseVO getPopularMovies(int days, int movieNum);
+
+    /**
+     * 获取链高度（上架电影等）
+     * @return
+     */
+    ResponseVO getMovieBlockHeight();
 }

@@ -26,5 +26,8 @@ public interface AccountService {
 
     public ResponseVO getStaff();
 
+    public ResponseVO getQualifiedUsers(double targetPurchase);
+
+    public ResponseVO updateTotalPurchase(double purchaseAmount,int userId);
 
 }

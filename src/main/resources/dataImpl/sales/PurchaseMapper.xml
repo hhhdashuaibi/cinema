@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.cinema.data.sales.PurchaseMapper">
+    <insert id="insertPurchase" parameterType="com.example.cinema.po.Purchase"
+            useGeneratedKeys="true" keyProperty="id">
+        insert into purchase(user_id,amount,pay_method,purchase_state,purchase_time)
+        values(#{userId}, #{amount},#{payMethod},#{purchaseState},#{purchaseTime})
+    </insert>
+
+    <select id="selectPurchaseById" resultMap="Purchase">
+        select * from purchase where id=#{id}
+    </select>
+
+    <select id="selectPurchasesByUser" resultMap="Purchase">
+        select * from purchase where user_id=#{userId}
+    </select>
+
+    <select id="selectPurchasesByTicket" resultMap="Purchase">
+        select * from purchase where UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=0 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=-1 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=-2 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=-3 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=-4 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=1 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=2 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=3 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=4 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=5 or UNIX_TIMESTAMP(#{ticketTime})-UNIX_TIMESTAMP(purchase_time)=-5
+    </select>
+
+    <update id="updatePurchaseState">
+        update ticket set purchase_state=#{purchaseState} where id=#{id}
+    </update>
+
+    <resultMap id="Purchase" type="com.example.cinema.po.Purchase">
+        <result column="id" property="id"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="amount" property="amount"></result>
+        <result column="pay_method" property="payMethod"></result>
+        <result column="purchase_state" property="purchaseState"></result>
+        <result column="purchase_time" property="purchaseTime"></result>
+    </resultMap>
+
+</mapper>

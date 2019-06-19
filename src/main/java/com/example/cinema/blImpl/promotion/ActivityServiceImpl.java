@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Created by liying on 2019/4/20.
  */
@@ -39,6 +41,19 @@ public class ActivityServiceImpl implements ActivityService {
                 activityMapper.insertActivityAndMovie(activity.getId(), activityForm.getMovieList());
             }
             return ResponseVO.buildSuccess(activityMapper.selectById(activity.getId()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
+
+    @Override
+    @Transactional
+    public ResponseVO getLastActivity() {
+        try {
+            List<Activity> activities=activityMapper.selectAllActivities();
+            int lastId=activities.get(activities.size()-1).getCoupon().getId();
+            return ResponseVO.buildSuccess(lastId);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");

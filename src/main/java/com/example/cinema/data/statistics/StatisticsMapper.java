@@ -41,9 +41,7 @@ public interface StatisticsMapper {
      * @param nextDate
      * @return
      */
-
     List<MoviePeriodBoxOffice> selectMoviePeriodBoxOffice(@Param("date") Date date, @Param("nextDate") Date nextDate);
-
 
     /**
      * 查询获取所有电影某天的上座率
@@ -51,8 +49,12 @@ public interface StatisticsMapper {
      * @param nextDate
      * @return
      */
+    List<MoviePlacingRate> selectMoviePlacingRates(@Param("date") Date date,@Param("nextDate") Date nextDate);
 
-    List<MoviePlacingRate> selectMoviePlacingRates(@Param("date") Date date, @Param("nextDate") Date nextDate);
-
+    /**
+     * 查询所有电影链区块的高度
+     * @return
+     */
+    List<MovieBlockHeight> selectMovieBlockHeight();
 
 }

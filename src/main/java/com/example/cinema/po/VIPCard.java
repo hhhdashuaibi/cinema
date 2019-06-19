@@ -1,6 +1,5 @@
 package com.example.cinema.po;
 
-
 import com.example.cinema.bl.promotion.VIPKindService;
 import com.example.cinema.blImpl.promotion.VIPKindServiceImpl;
 import com.example.cinema.data.promotion.VIPKindMapper;
@@ -121,7 +120,6 @@ public class VIPCard {
     public void setJoinDate(Timestamp joinDate) {
         this.joinDate = joinDate;
     }
-
 
     public String getKind() {
         return kind;

@@ -27,6 +27,10 @@ public class Coupon {
      */
     private double discountAmount;
     /**
+     * 用户最低消费
+     */
+    private double leastPurchase;
+    /**
      * 可用时间
      */
     private Timestamp startTime;
@@ -89,6 +93,14 @@ public class Coupon {
 
     public void setDiscountAmount(double discountAmount) {
         this.discountAmount = discountAmount;
+    }
+
+    public double getLeastPurchase() {
+        return leastPurchase;
+    }
+
+    public void setLeastPurchase(double leastPurchase) {
+        this.leastPurchase = leastPurchase;
     }
 
     public Coupon() {

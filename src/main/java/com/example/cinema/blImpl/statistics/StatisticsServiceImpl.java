@@ -85,7 +85,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             //String string = "2019-04-20 19:00:00";
 
             SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
             Date requireDate = date;
             if(requireDate == null){
                 requireDate = new Date();
@@ -94,7 +93,6 @@ public class StatisticsServiceImpl implements StatisticsService {
             requireDate = simpleDateFormat.parse(simpleDateFormat.format(requireDate));  //格式化日期date对象后将其赋值给requireDate对象
 
             Date nextDate = getNumDayAfterDate(requireDate, 1);  //nextDate定义为date的隔一天
-
             return ResponseVO.buildSuccess(moviePlacingRateList2MoviePlacingRateVOList(statisticsMapper.selectMoviePlacingRates(requireDate, nextDate)));
         }catch (Exception e){
             e.printStackTrace();
@@ -136,6 +134,15 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     }
 
+    @Override
+    public ResponseVO getMovieBlockHeight(){
+        try {
+            return ResponseVO.buildSuccess(movieBlockHeightList2MovieBlockHeightVOList(statisticsMapper.selectMovieBlockHeight()));
+        }catch (Exception e){
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
 
     /**
      * 获得num天后的日期
@@ -185,5 +192,13 @@ public class StatisticsServiceImpl implements StatisticsService {
             moviePlacingRateVOList.add(new MoviePlacingRateVO(moviePlacingRate));
         }
         return moviePlacingRateVOList;
+    }
+
+    private List<MovieBlockHeightVO> movieBlockHeightList2MovieBlockHeightVOList(List<MovieBlockHeight> movieBlockHeightList){
+        List<MovieBlockHeightVO> movieBlockHeightVOList = new ArrayList<>();
+        for(MovieBlockHeight movieBlockHeight : movieBlockHeightList){
+            movieBlockHeightVOList.add(new MovieBlockHeightVO(movieBlockHeight));
+        }
+        return movieBlockHeightVOList;
     }
 }

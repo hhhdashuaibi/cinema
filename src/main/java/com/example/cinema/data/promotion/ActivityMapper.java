@@ -24,9 +24,6 @@ public interface ActivityMapper {
 
     List<Activity> selectActivitiesWithoutMovie();
 
-
-
-
-
+    List<Activity> selectAllActivities();
 
 }

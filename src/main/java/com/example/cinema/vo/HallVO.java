@@ -11,12 +11,23 @@ public class HallVO {
     private String name;
     private Integer row;
     private Integer column;
+    private String type;
 
     public HallVO(Hall hall){
         this.id = hall.getId();
         this.name = hall.getName();
         this.row = hall.getRow();
         this.column = hall.getColumn();
+        this.type=hall.getType();
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+
     }
 
     public Integer getId() {

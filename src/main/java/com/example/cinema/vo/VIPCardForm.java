@@ -27,7 +27,6 @@ public class VIPCardForm {
      * */
     public double discountPercent;
 
-
     public int getVipId() {
         return vipId;
     }
@@ -75,6 +74,7 @@ public class VIPCardForm {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
     public double getDiscountPercent() {
         return discountPercent;
     }
@@ -82,4 +82,5 @@ public class VIPCardForm {
     public void setDiscountPercent(double discountPercent) {
         this.discountPercent = discountPercent;
     }
+
 }

@@ -26,5 +26,7 @@ public class ActivityController {
         return activityService.getActivities();
     }
 
+    @GetMapping("/getCouponId")
+    public ResponseVO getCouponId(){return activityService.getLastActivity();}
 
 }
