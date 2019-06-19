@@ -322,16 +322,12 @@ public class TicketServiceImpl implements TicketService {
     public ResponseVO getByPurchase(int purchaseId){
         //根据某笔消费的时间获取对应的电影票信息
         try{
-            Purchase purchase=purchaseMapper.selectPurchaseById(purchaseId);
-            Timestamp purchaseTime=purchase.getTime();
-            List<Ticket> tickets=ticketMapper.selectTicketsByPurchase(purchaseTime);
+            List<Ticket> tickets=ticketMapper.selectTicketsByPurchase(purchaseId);
             List<TicketVO>ticketVOS=new ArrayList<>();
             for(int i=0;i<tickets.size();i++){
                 ticketVOS.add(tickets.get(i).getVO());
             }
             return ResponseVO.buildSuccess(ticketVOS);
-
-
         }catch (Exception e) {
             e.printStackTrace();
             return ResponseVO.buildFailure("失败");

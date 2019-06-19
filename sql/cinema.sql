@@ -294,6 +294,30 @@ INSERT INTO `purchase` VALUES (1,12,4,0,0,'2019-04-23 13:50:52');
 /*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
 UNLOCK TABLES;
 
+--
+-- Table structure for table `purchase_ticket`
+--
+
+DROP TABLE IF EXISTS `purchase_ticket`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchase_ticket` (
+                               `purchase_id` int(11) NOT NULL,
+                               `ticket_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `purchase_ticket`
+--
+
+LOCK TABLES `purchase_ticket` WRITE;
+/*!40000 ALTER TABLE `purchase_ticket` DISABLE KEYS */;
+INSERT INTO `purchase_ticket` VALUES (64,66),(65,67),(65,68),(66,69);
+/*!40000 ALTER TABLE `purchase_ticket` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 
 --
 -- Table structure for table `recharge`

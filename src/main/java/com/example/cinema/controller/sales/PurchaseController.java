@@ -6,6 +6,8 @@ import com.example.cinema.bl.sales.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/purchase")
 public class PurchaseController {
@@ -36,4 +38,12 @@ public class PurchaseController {
     public ResponseVO getPurchaseByTicket(@RequestParam int ticketId){
         return purchaseService.getByTicket(ticketId);
     }
+
+    @PostMapping("/addPurchaseAndTicket")
+    public ResponseVO issuePurchase(@RequestParam int purchaseId,@RequestParam List<Integer> ticketId){
+        return purchaseService.issuePurchase(purchaseId,ticketId);
+    };
+
+    @GetMapping("/getPurchaseId")
+    public ResponseVO getPurchaseId(){return purchaseService.getLastPurchase();}
 }

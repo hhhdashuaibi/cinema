@@ -3,6 +3,9 @@ package com.example.cinema.bl.sales;
 
 import com.example.cinema.vo.PurchaseItemVO;
 import com.example.cinema.vo.ResponseVO;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 public interface PurchaseService {
     /**
@@ -37,4 +40,8 @@ public interface PurchaseService {
      * @return
      */
     ResponseVO getByTicket(int ticketId);
+
+    ResponseVO issuePurchase(int purchaseId,List<Integer> ticketId);
+
+    ResponseVO getLastPurchase();
 }

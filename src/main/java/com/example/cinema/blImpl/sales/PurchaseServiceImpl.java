@@ -106,4 +106,31 @@ public class PurchaseServiceImpl implements PurchaseService {
             return ResponseVO.buildFailure("失败");
         }
     }
+
+    @Override
+    public ResponseVO issuePurchase(int purchaseId, List<Integer> ticketId) {
+        try {
+            for(int i=0;i<ticketId.size();i++){
+                purchaseMapper.insertPurchaseTicket(purchaseId,ticketId.get(i));
+            }
+            return ResponseVO.buildSuccess();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+
+    }
+
+    @Override
+    @Transactional
+    public ResponseVO getLastPurchase() {
+        try {
+            List<Purchase> purchases=purchaseMapper.selectAllPurchases();
+            int lastId=purchases.get(purchases.size()-1).getId();
+            return ResponseVO.buildSuccess(lastId);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseVO.buildFailure("失败");
+        }
+    }
 }

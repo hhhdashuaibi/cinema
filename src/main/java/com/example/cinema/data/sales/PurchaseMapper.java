@@ -18,6 +18,9 @@ public interface PurchaseMapper {
 
     void updatePurchaseState(@Param("id") int id,@Param("purchaseState") int purchaseState);
 
+    void insertPurchaseTicket(@Param("purchaseId") int purchaseId,@Param("ticketId")int ticketId);
+
     Purchase selectPurchaseByTicket(Timestamp ticketTime);
 
+    List<Purchase> selectAllPurchases();
 }

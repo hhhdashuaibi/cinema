@@ -297,6 +297,24 @@ function postPayRequest() {
             form,
             function (res) {
                 //alert("购票成功");
+                getRequest(
+                    '/purchase/getPurchaseId',
+                    function(res){
+                        postRequest(
+                            '/purchase/addPurchaseAndTicket?purchaseId='+res.content+'&ticketId='+order.ticketId,
+                            null,
+                            function (){
+                                alert("关联电影票与消费记录成功");
+                            },
+                            function (error) {
+                                alert(error);
+                            }
+                        );
+                    },
+                    function (error) {
+                        alert(error)
+                    }
+                )
             },
             function (error) {
                 alert("购票失败");
