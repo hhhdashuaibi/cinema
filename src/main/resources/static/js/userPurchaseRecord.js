@@ -42,49 +42,54 @@ $(document).ready(function () {
             "<td>" + onePurchaseInfo.amount + "</td>" +
             "<td>" + onePurchaseInfo.payMethod + "</td>" +
             "<td>" + onePurchaseInfo.purchaseState + "</td>" +
-            "<td>" + "<button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#purchaseTicketsModal\">查看详情</button>" + "</td>" +
+            "<td>" + "<button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#purchaseTicketsModal\" onclick='renderDetail("+onePurchaseInfo.id+")'>查看详情</button>" + "</td>" +
             "</tr>";
         $('.purchase-on-list').append(purchaseDomStr);
+
+    }
+});
+
+function renderDetail(id) {
+    $('.purchase-detail-on-list').empty();
+    getRequest(
+        '/ticket/gett/purchase?purchaseId='+id,
+        function (res) {
+            if(res.success){
+                alert(id);
+                renderPurchaseDetail(res.content);
+            }else{
+                alert(res.message);
+            }
+        },
+        function (error) {
+            alert(error);
+        }
+    )
+}
+
+function renderTicketDetail(scheduleInfo,ticketInfo){
+    var ticketDomStr = '';
+    ticketDomStr +=
+        "<tr>" +
+        "<td>" + scheduleInfo.movieName + "</td>" +
+        "<td>" + (ticketInfo.rowIndex + 1) + "排" + (ticketInfo.columnIndex + 1) + "座" + "</td>" +
+        "<td>" + formatDate(scheduleInfo.startTime) + " " + formatTime(scheduleInfo.startTime) + "</td>" +
+        "<td>" + ticketInfo.price + "</td>"
+    "</tr>";
+    $('.purchase-detail-on-list').append(ticketDomStr);
+}
+
+function renderPurchaseDetail(list) {
+    $('content-container').empty();
+    list.forEach(function (ticketInfo){
         getRequest(
-            '/ticket/gett/purchase?purchaseId='+onePurchaseInfo.id,
+            '/schedule/'+ticketInfo.scheduleId,
             function (res) {
-                if(res.success){
-                    alert(onePurchaseInfo.id);
-                    renderPurchaseDetail(res.content);
-                }else{
-                    alert(res.message);
-                }
+                renderTicketDetail(res.content,ticketInfo);
             },
             function (error) {
                 alert(error);
             }
         )
-    }
-
-    function renderPurchaseDetail(list) {
-        list.forEach(function (ticketInfo){
-            getRequest(
-                '/schedule/'+ticketInfo.scheduleId,
-                function (res) {
-                    renderTicketDetail(res.content,ticketInfo);
-                },
-                function (error) {
-                    alert(error);
-                }
-            )
-        });
-    }
-
-    function renderTicketDetail(scheduleInfo,ticketInfo){
-        var ticketDomStr = '';
-        ticketDomStr +=
-            "<tr>" +
-            "<td>" + scheduleInfo.movieName + "</td>" +
-            "<td>" + (ticketInfo.rowIndex + 1) + "排" + (ticketInfo.columnIndex + 1) + "座" + "</td>" +
-            "<td>" + formatDate(scheduleInfo.startTime) + " " + formatTime(scheduleInfo.startTime) + "</td>" +
-            "<td>" + ticketInfo.price + "</td>"
-            "</tr>";
-        $('.purchase-detail-on-list').append(ticketDomStr);
-    }
-
-});
+    });
+}

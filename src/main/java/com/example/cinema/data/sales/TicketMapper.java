@@ -33,7 +33,7 @@ public interface TicketMapper {
 
     List<Ticket> selectTicketByUser(int userId);
 
-    List<Ticket> selectTicketsByPurchase(Timestamp purchaseTime);
+    List<Ticket> selectTicketsByPurchase(int purchaseId);
 
     @Scheduled(cron = "0/1 * * * * ?")
     void cleanExpiredTicket();
