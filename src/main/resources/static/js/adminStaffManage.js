@@ -1,3 +1,4 @@
+var userName;
 $(document).ready(function () {
     getAllStaffs();
     function getAllStaffs() {
@@ -63,6 +64,7 @@ $(document).ready(function () {
 
     $(document).on('click','.staff-container',function (e) {
         var oneStaff = JSON.parse(e.currentTarget.dataset.onestaff);
+        userName=oneStaff.username;
         $("#staff-edit-name-input").val(oneStaff.name);
         $("#staff-edit-username-input").val(oneStaff.username);
         $('#staffEditModal').modal('show');
@@ -75,6 +77,24 @@ $(document).ready(function () {
                 username:$("#staff-edit-username-input").val(),
                 power:1
         };
+        if(userName!=$("#staff-edit-username-input").val()){
+            postRequest(
+                '/updateStaff',
+                {
+                    username:userName,
+                    power:2
+                },
+                function (res) {
+                    if(res.success){
+                    } else {
+                        alert(res.message);
+                    }
+                },
+                function (error) {
+                    alert(JSON.stringify(error));
+                }
+            );
+        }
         postRequest(
             '/updateStaff',
             form,
