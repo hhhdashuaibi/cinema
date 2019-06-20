@@ -5,7 +5,7 @@ import com.example.cinema.vo.ResponseVO;
 
 public interface RechargeService {
     /**
-     * 增加充值记录
+     * 根据前端传回的充值信息增加充值记录
      *
      * @param rechargeItemVO
      * @return

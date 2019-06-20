@@ -65,6 +65,7 @@ function renderDetail(id) {
     )
 }
 
+//渲染消费记录对应的若干张票的信息
 function renderTicketDetail(scheduleInfo,ticketInfo){
     var ticketDomStr = '';
     ticketDomStr +=
@@ -77,6 +78,7 @@ function renderTicketDetail(scheduleInfo,ticketInfo){
     $('.purchase-detail-on-list').append(ticketDomStr);
 }
 
+//渲染某条消费记录的详细信息
 function renderPurchaseDetail(list) {
     $('content-container').empty();
     list.forEach(function (ticketInfo){

@@ -66,6 +66,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public ResponseVO getPurchaseById(int id) {
+        //根据消费记录Id获取消费记录
         try {
             Purchase purchase =purchaseMapper.selectPurchaseById(id);
             if(purchase != null){
@@ -107,6 +108,7 @@ public class PurchaseServiceImpl implements PurchaseService {
 
     @Override
     public ResponseVO issuePurchase(int purchaseId, List<Integer> ticketId) {
+        //在purchase_ticket表中添加若干条对应的记录
         try {
             for(int i=0;i<ticketId.size();i++){
                 purchaseMapper.insertPurchaseTicket(purchaseId,ticketId.get(i));

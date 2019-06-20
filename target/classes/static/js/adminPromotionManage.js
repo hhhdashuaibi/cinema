@@ -103,10 +103,10 @@ $(document).ready(function() {
                     getActivities();
                     $("#activityModal").modal('hide');
                     getRequest(
-                        '/activity/getCouponId',
+                        '/activity/getCouponId',//获取添加的优惠券的id
                         function(res){
                             postRequest(
-                                '/coupon/addUsers?couponId='+res.content+'&targetPurchase='+$("#coupon-least-purchase-input").val(),
+                                '/coupon/addUsers?couponId='+res.content+'&targetPurchase='+$("#coupon-least-purchase-input").val(),//根据最低金额在coupon_user表中对应地添加
                                 null,
                                 function (){
                                     alert("用户得到优惠券");

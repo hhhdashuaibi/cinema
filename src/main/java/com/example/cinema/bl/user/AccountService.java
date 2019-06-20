@@ -26,8 +26,21 @@ public interface AccountService {
 
     public ResponseVO getStaff();
 
+    /**
+     * 选取符合最低消费条件的用户
+     *
+     * @param targetPurchase
+     * @return
+     */
     public ResponseVO getQualifiedUsers(double targetPurchase);
 
+    /**
+     * 用户购票时增加用户总消费金额
+     *
+     * @param purchaseAmount
+     * @param userId
+     * @return
+     */
     public ResponseVO updateTotalPurchase(double purchaseAmount,int userId);
 
 }

@@ -104,7 +104,6 @@ function orderConfirmClick() {
     $('#seat-state').css("display", "none");
     $('#order-state').css("display", "");
 
-    // TODO:这里是假数据，需要连接后端获取真数据，数据格式可以自行修改，但如果改了格式，别忘了修改renderOrder方法
     var seats=new Array();
     for(let selectedSeat of selectedSeats){
         seats[seats.length]={
@@ -292,16 +291,18 @@ function postPayRequest() {
             }
         )
         var form = getPurchaseItem(1,0)
+        //增加消费记录,下同
         postRequest(
             '/purchase/create',
             form,
             function (res) {
                 //alert("购票成功");
                 getRequest(
+                    //获取刚才增加的消费记录的id,下同
                     '/purchase/getPurchaseId',
                     function(res){
                         postRequest(
-                            '/purchase/addPurchaseAndTicket?purchaseId='+res.content+'&ticketId='+order.ticketId,
+                            '/purchase/addPurchaseAndTicket?purchaseId='+res.content+'&ticketId='+order.ticketId,//对应地添加消费记录和电影票
                             null,
                             function (){
                                 //alert("关联电影票与消费记录成功");
@@ -320,6 +321,7 @@ function postPayRequest() {
                 alert("购票失败");
             }
         )
+        //确认支付后更新用户的总消费,下同
         postRequest(
             '/updateTotalPurchase?purchaseAmount='+$("#order-actual-total").text().substring(2)+'&userId='+sessionStorage.getItem("id"),
             null,

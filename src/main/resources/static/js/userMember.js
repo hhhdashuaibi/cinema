@@ -220,9 +220,10 @@ function formatDate(date) {
     return date.substring(5, 10).replace("-", ".");
 }
 
+//渲染用户所有的充值记录
 function getRechargeList() {
     getRequest(
-        '/recharge/gety/' + sessionStorage.getItem('id'),
+        '/recharge/gety/' + sessionStorage.getItem('id'),//根据用户id获取充值记录
         function (res) {
                 renderRechargeList(res.content);
         },
@@ -231,6 +232,7 @@ function getRechargeList() {
         });
 }
 
+//渲染充值记录
 function renderRechargeList(list) {
     $('content-container').empty();
     list.forEach(function (rechargeInfo){
@@ -246,6 +248,7 @@ function renderRechargeList(list) {
     });
 }
 
+//渲染充值记录详细信息
 function renderRecharge(rechargeInfo) {
     var rechargeDomStr = '';
     var formalTime=rechargeInfo.rechargeTime;

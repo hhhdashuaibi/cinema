@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface PurchaseService {
     /**
-     * 增加消费记录
+     * 根据前端传回的消费信息增加消费记录
      *
      * @param purchaseItemVO
      * @return
@@ -41,7 +41,19 @@ public interface PurchaseService {
      */
     ResponseVO getByTicket(int ticketId);
 
+    /**
+     * 将消费记录与票对应地加入purchase_ticket表中
+     *
+     * @param purchaseId
+     * @param ticketId
+     * @return
+     */
     ResponseVO issuePurchase(int purchaseId,List<Integer> ticketId);
 
+    /**
+     * 获取当前最后一条消费记录
+     *
+     * @return
+     */
     ResponseVO getLastPurchase();
 }

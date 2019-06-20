@@ -64,6 +64,7 @@ public class RechargeServiceImpl implements RechargeService {
 
     @Override
     public ResponseVO getRechargeById(int id) {
+        //根据充值记录Id获取充值记录
         try {
             Recharge recharge =rechargeMapper.selectRechargeById(id);
             if(recharge != null){

@@ -58,6 +58,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ResponseVO getQualifiedUsers(double targetPurchase){
+        //获取符合最低消费要求的用户
         try {
             List<User> users =accountMapper.getUsersByPurchase(targetPurchase);
             List<UserVO> userVOS=new ArrayList<>();
@@ -77,6 +78,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public ResponseVO updateTotalPurchase(double purchaseAmount,int userId){
+        //更新用户总消费
         double rawTotal=accountMapper.getTotalPurchase(userId).getTotalPurchase();
         double res=rawTotal+purchaseAmount;
         accountMapper.updateTotalPurchase(res,userId);

@@ -320,7 +320,7 @@ public class TicketServiceImpl implements TicketService {
 
     @Override
     public ResponseVO getByPurchase(int purchaseId){
-        //根据某笔消费的时间获取对应的电影票信息
+        //根据某笔消费的id获取对应的电影票信息
         try{
             List<Ticket> tickets=ticketMapper.selectTicketsByPurchase(purchaseId);
             List<TicketVO>ticketVOS=new ArrayList<>();

@@ -33,10 +33,25 @@ public interface AccountMapper {
 
     public List<User> getStaff(@Param("power") int power);
 
+    /**
+     * 根据最低消费选择符合条件的用户
+     * @param targetPurchase
+     * @return
+     */
     public List<User> getUsersByPurchase(@Param("targetPurchase") double targetPurchase);
 
+    /**
+     * 更新用户的总消费
+     * @param newtotalPurchase
+     * @param userId
+     */
     public void updateTotalPurchase(@Param("newTotalPurchase") double newtotalPurchase, @Param("userId") int userId);
 
+    /**
+     * 获取用户的总消费
+     * @param userId
+     * @return
+     */
     public User getTotalPurchase(@Param("userId") int userId);
 
 }

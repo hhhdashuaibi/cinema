@@ -56,11 +56,22 @@ public class AccountController {
         return accountService.updatePowerAndName(userForm);
     }
 
+    /**
+     * 更新用户总消费
+     * @param purchaseAmount
+     * @param userId
+     * @return
+     */
     @PostMapping("/updateTotalPurchase")
     public ResponseVO updateTotalPurchase(@RequestParam double purchaseAmount, @RequestParam int userId){
         return accountService.updateTotalPurchase(purchaseAmount,userId);
     }
 
+    /**
+     * 获取符合最低消费条件的用户
+     * @param targetPurchase
+     * @return
+     */
     @GetMapping("/getQualifiedUser")
     public ResponseVO getQualifiedUser(@RequestParam double targetPurchase){
         return accountService.getQualifiedUsers(targetPurchase);
