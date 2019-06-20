@@ -135,7 +135,7 @@ public class StatisticsServiceImpl implements StatisticsService {
     }
 
     @Override
-    public ResponseVO getMovieBlockHeight(){
+    public ResponseVO getMovieBlockHeight(){  //获取区块链高度
         try {
             return ResponseVO.buildSuccess(movieBlockHeightList2MovieBlockHeightVOList(statisticsMapper.selectMovieBlockHeight()));
         }catch (Exception e){
