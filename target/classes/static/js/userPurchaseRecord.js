@@ -41,7 +41,6 @@ $(document).ready(function () {
             "<td>" + formalTime + "</td>" +
             "<td>" + onePurchaseInfo.amount + "</td>" +
             "<td>" + onePurchaseInfo.payMethod + "</td>" +
-            "<td>" + onePurchaseInfo.purchaseState + "</td>" +
             "<td>" + "<button class=\"btn btn-primary btn-lg\" data-toggle=\"modal\" data-target=\"#purchaseTicketsModal\" onclick='renderDetail("+onePurchaseInfo.id+")'>查看详情</button>" + "</td>" +
             "</tr>";
         $('.purchase-on-list').append(purchaseDomStr);
@@ -55,7 +54,6 @@ function renderDetail(id) {
         '/ticket/gett/purchase?purchaseId='+id,
         function (res) {
             if(res.success){
-                alert(id);
                 renderPurchaseDetail(res.content);
             }else{
                 alert(res.message);
