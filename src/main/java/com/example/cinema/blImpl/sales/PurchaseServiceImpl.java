@@ -96,10 +96,8 @@ public class PurchaseServiceImpl implements PurchaseService {
     public ResponseVO getByTicket(int ticketId){
         //根据某笔消费的时间获取对应的电影票信息
         try{
-            Ticket ticket=ticketMapper.selectTicketById(ticketId);
-            Timestamp ticketTime=ticket.getTime();
-            Purchase purchaseToSelect=purchaseMapper.selectPurchaseByTicket(ticketTime);
-            PurchaseVO purchaseVO=new PurchaseVO();
+            Purchase purchaseToSelect=purchaseMapper.selectPurchaseByTicket(ticketId);
+            PurchaseVO purchaseVO=purchaseToSelect.getVO();
             return ResponseVO.buildSuccess(purchaseVO);
         }catch (Exception e) {
             e.printStackTrace();

@@ -126,6 +126,7 @@ $(document).ready(function () {
                 console.log(JSON.stringify(err));
             }
         )
+        /**
         getRequest(
             '/purchase/gett?ticketId='+ ticket,
             function (res) {
@@ -144,6 +145,7 @@ $(document).ready(function () {
                 alert(error)
             }
         )
+         */
 
     }
 

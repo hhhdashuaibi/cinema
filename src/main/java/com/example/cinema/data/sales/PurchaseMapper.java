@@ -20,7 +20,7 @@ public interface PurchaseMapper {
 
     void insertPurchaseTicket(@Param("purchaseId") int purchaseId,@Param("ticketId")int ticketId);
 
-    Purchase selectPurchaseByTicket(Timestamp ticketTime);
+    Purchase selectPurchaseByTicket(int ticketId);
 
     List<Purchase> selectAllPurchases();
 }
